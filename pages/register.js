@@ -1,9 +1,38 @@
 import Image from "next/image";
 import Link from "next/link";
 import MainLayout from "../components/layouts/MainLayout";
-import heroRegister from "../public/heroRegister.svg"
+import heroRegister from "../public/heroRegister.svg";
+import { useState } from "react";
+import { useRouter } from "next/router";
+import axios from "axios";
 
 export default function register() {
+  const router = useRouter();
+
+  //  State
+  const [form, setForm] = useState({
+    nik: "",
+    nama_lengkap: "",
+    email: "",
+    password: "",
+    alamat: "",
+    jenis_kelamin: "",
+    no_hp: "",
+  });
+
+  // method
+  const submitForm = async (e) => {
+    e.preventDefault();
+    try {
+      const response = await axios.post("http://localhost:8080/api/user/add", form);
+      if (response.data.status === 200) {
+        router.push("/");
+      }
+    } catch (error) {
+      console.log(error);
+    }
+  };
+
   return (
     <>
       <MainLayout>
@@ -14,11 +43,11 @@ export default function register() {
             </figure>
 
             {/* Form */}
-            <div className='w-full mx-auto px-6 py-4 rounded-md bg-gray-50/80'>
+            <div className="w-full mx-auto px-6 py-4 rounded-md bg-gray-50/80">
               <div>
-                <h2 className='text-center text-sm font-bold tracking-wide text-gray-800'>
+                <h2 className="text-center text-sm font-bold tracking-wide text-gray-800">
                   Selamat Bergabung di
-                  <span className='text-lg font-extrabold tracking-wider text-fuchsia-600'> POJOK UMKM. </span>
+                  <span className="text-lg font-extrabold tracking-wider text-fuchsia-600"> POJOK UMKM. </span>
                 </h2>
               </div>
 
@@ -26,76 +55,149 @@ export default function register() {
                 <div className="w-full py-6">
                   <div className="block text-sm">
                     <label className="text-gray-800 font-medium">NIK</label>
-                    <input type="text" className="form-input mt-1 block w-full text-sm rounded-md border-gray-300 shadow-sm
-                        focus:border-fuchsia-300 focus:ring focus:ring-fuchsia-200 focus:ring-opacity-50" placeholder="Nomor NIK" />
+                    <input
+                      onChange={(e) => {
+                        setForm({
+                          ...form,
+                          nik: e.target.value,
+                        });
+                      }}
+                      value={form.nik}
+                      type="text"
+                      className="form-input mt-1 block w-full text-sm rounded-md border-gray-300 shadow-sm
+                        focus:border-fuchsia-300 focus:ring focus:ring-fuchsia-200 focus:ring-opacity-50"
+                      placeholder="Nomor NIK"
+                    />
                   </div>
                   <div className="block text-sm mt-5">
                     <label className="text-gray-800 font-medium">Nama Lengkap</label>
-                    <input type="text" className="form-input mt-1 block w-full text-sm rounded-md border-gray-300 shadow-sm
-                        focus:border-fuchsia-300 focus:ring focus:ring-fuchsia-200 focus:ring-opacity-50" placeholder="Nama Lengkap" />
+                    <input
+                      onChange={(e) => {
+                        setForm({
+                          ...form,
+                          nama_lengkap: e.target.value,
+                        });
+                      }}
+                      value={form.nama_lengkap}
+                      type="text"
+                      className="form-input mt-1 block w-full text-sm rounded-md border-gray-300 shadow-sm
+                        focus:border-fuchsia-300 focus:ring focus:ring-fuchsia-200 focus:ring-opacity-50"
+                      placeholder="Nama Lengkap"
+                    />
                   </div>
                   <div className="block text-sm mt-5">
                     <label className="text-gray-800 font-medium">No HP</label>
-                    <input type="text" className="form-input mt-1 block w-full text-sm rounded-md border-gray-300 shadow-sm
-                        focus:border-fuchsia-300 focus:ring focus:ring-fuchsia-200 focus:ring-opacity-50" placeholder="08xxxxxxxxxx" />
+                    <input
+                      onChange={(e) => {
+                        setForm({
+                          ...form,
+                          no_hp: e.target.value,
+                        });
+                      }}
+                      value={form.no_hp}
+                      type="text"
+                      className="form-input mt-1 block w-full text-sm rounded-md border-gray-300 shadow-sm
+                        focus:border-fuchsia-300 focus:ring focus:ring-fuchsia-200 focus:ring-opacity-50"
+                      placeholder="08xxxxxxxxxx"
+                    />
                   </div>
                   <div className="block text-sm mt-5">
                     <label className="text-gray-800 font-medium">Alamat Usaha</label>
-                    <textarea className="form-input mt-1 block w-full text-sm rounded-md border-gray-300 shadow-sm
-                        focus:border-fuchsia-300 focus:ring focus:ring-fuchsia-200 focus:ring-opacity-50" placeholder="Jl. Raya Mauk No.89, Sepatan, Tangerang, Banten 15520, Indonesia">
-                        </textarea>
+                    <textarea
+                      onChange={(e) => {
+                        setForm({
+                          ...form,
+                          alamat: e.target.value,
+                        });
+                      }}
+                      value={form.alamat}
+                      className="form-input mt-1 block w-full text-sm rounded-md border-gray-300 shadow-sm
+                        focus:border-fuchsia-300 focus:ring focus:ring-fuchsia-200 focus:ring-opacity-50"
+                      placeholder="Jl. Raya Mauk No.89, Sepatan, Tangerang, Banten 15520, Indonesia"
+                    ></textarea>
                   </div>
                 </div>
 
                 <div className="w-full 2lg:py-6">
                   <div className="block text-sm">
                     <label className="text-gray-800 font-medium">Email</label>
-                    <input type="email" className="form-input mt-1 block w-full text-sm rounded-md border-gray-300 shadow-sm
-                        focus:border-fuchsia-300 focus:ring focus:ring-fuchsia-200 focus:ring-opacity-50" placeholder="pojokumkm@contoh.com" />
+                    <input
+                      onChange={(e) => {
+                        setForm({
+                          ...form,
+                          email: e.target.value,
+                        });
+                      }}
+                      value={form.email}
+                      type="email"
+                      className="form-input mt-1 block w-full text-sm rounded-md border-gray-300 shadow-sm
+                        focus:border-fuchsia-300 focus:ring focus:ring-fuchsia-200 focus:ring-opacity-50"
+                      placeholder="pojokumkm@contoh.com"
+                    />
                   </div>
                   <div className="block text-sm mt-5">
                     <label className="text-gray-800 font-medium">Kata Sandi</label>
-                    <input type="password" className="form-input mt-1 block w-full text-sm rounded-md border-gray-300 shadow-sm
-                        focus:border-fuchsia-300 focus:ring focus:ring-fuchsia-200 focus:ring-opacity-50" placeholder="Kata Sandi" />
+                    <input
+                      onChange={(e) => {
+                        setForm({
+                          ...form,
+                          password: e.target.value,
+                        });
+                      }}
+                      value={form.password}
+                      type="password"
+                      className="form-input mt-1 block w-full text-sm rounded-md border-gray-300 shadow-sm
+                        focus:border-fuchsia-300 focus:ring focus:ring-fuchsia-200 focus:ring-opacity-50"
+                      placeholder="Kata Sandi"
+                    />
                   </div>
                   <div className="block text-sm mt-5">
                     <label className="text-gray-800 font-medium">Verifikasi Kata Sandi</label>
-                    <input type="password" className="form-input mt-1 block w-full text-sm rounded-md border-gray-300 shadow-sm
-                        focus:border-fuchsia-300 focus:ring focus:ring-fuchsia-200 focus:ring-opacity-50" placeholder="Verifikasi Kata Sandi" />
+                    <input
+                      type="password"
+                      className="form-input mt-1 block w-full text-sm rounded-md border-gray-300 shadow-sm
+                        focus:border-fuchsia-300 focus:ring focus:ring-fuchsia-200 focus:ring-opacity-50"
+                      placeholder="Verifikasi Kata Sandi"
+                    />
                   </div>
                   <div className="block text-sm mt-5">
                     <label className="text-gray-800 font-medium">Jenis Kelamin</label>
-                    <select className="form-select mt-1 block w-full text-sm rounded-md border-gray-300 shadow-sm
-                        focus:border-fuchsia-300 focus:ring focus:ring-fuchsia-200 focus:ring-opacity-50">
+                    <select
+                      onChange={(e) => {
+                        setForm({
+                          ...form,
+                          jenis_kelamin: e.target.value,
+                        });
+                      }}
+                      value={form.jenis_kelamin}
+                      className="form-select mt-1 block w-full text-sm rounded-md border-gray-300 shadow-sm
+                        focus:border-fuchsia-300 focus:ring focus:ring-fuchsia-200 focus:ring-opacity-50"
+                    >
                       <option>Pilih Jenis Kelamin</option>
                       <option>Laki-laki</option>
                       <option>Perempuan</option>
                     </select>
                   </div>
-
                 </div>
               </form>
               {/* Button */}
-              <div className='text-center'>
-                <Link href="/">
-                  <button type='submit' className="w-52 h-8 mt-6 text-xs rounded text-slate-50 bg-fuchsia-600 hover:bg-fuchsia-500 shadow hover:shadow-fuchsia-500/50">
-                    Masuk
-                  </button>
-                </Link>
+              <div className="text-center">
+                <button onClick={submitForm} type="submit" className="w-52 h-8 mt-6 text-xs rounded text-slate-50 bg-fuchsia-600 hover:bg-fuchsia-500 shadow hover:shadow-fuchsia-500/50">
+                  Masuk
+                </button>
               </div>
               <div>
-                <p className='text-center text-xs text-gray-800 mt-6'>
+                <p className="text-center text-xs text-gray-800 mt-6">
                   Sudah punya akun?
                   <Link href="/login">
                     <a className="font-semibold text-fuchsia-600"> Masuk Disini</a>
                   </Link>
                 </p>
               </div>
-
             </div>
           </div>
         </section>
       </MainLayout>
     </>
-  )
+  );
 }
