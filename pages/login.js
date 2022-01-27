@@ -6,6 +6,7 @@ import heroLogin from "../public/heroLogin.svg"
 
 
 export default function login() {
+  
   return (
     <>
       <Head>
@@ -16,8 +17,7 @@ export default function login() {
           <div className="flex w-full 2lg:mt-20 flex-col 2lg:gap-10 items-center justify-around 2lg:flex-row">
                 <figure className="hidden 2lg:inline-block">
                   <Image src={heroLogin} alt="heroLogin" width={360} height={360} />
-                </figure>
-              
+                </figure>        
 
               {/* Form */}
               <div className='px-6 py-4 rounded-md bg-gray-50/80'>
@@ -32,14 +32,20 @@ export default function login() {
                   <form>
                     <div className="py-6">
                       <div className="block text-sm">
-                        <label className="text-gray-800 font-medium">Email</label>
-                        <input type="email" className="form-input mt-1 block w-full text-sm rounded-md border-gray-300 shadow-sm
-                        focus:border-fuchsia-300 focus:ring focus:ring-fuchsia-200 focus:ring-opacity-50" placeholder="pojokumkm@contoh.com" />
+                        <label className="text-gray-800 font-medium"><span className="text-red-500">&nbsp;*</span>Email</label>
+                        <input 
+                        type="email" className="form-input peer mt-1 block w-full text-sm rounded-md border-gray-300 shadow-sm
+                        invalid:border-red-500 invalid:text-red-600
+                        focus:invalid:border-red-500 focus:invalid:ring-red-500" placeholder="pojokumkm@contoh.com" />
+                        <p className="mt-2 hidden peer-invalid:block text-red-600 text-xs">
+                          Email tidak valid!
+                        </p>
                       </div>
                       <div className="block text-sm mt-5">
-                        <label className="text-gray-800 font-medium">Kata Sandi</label>
-                        <input type="password" className="form-input mt-1 block w-full text-sm rounded-md border-gray-300 shadow-sm
-                        focus:border-fuchsia-300 focus:ring focus:ring-fuchsia-200 focus:ring-opacity-50" placeholder="Kata Sandi" />
+                        <label className="text-gray-800 font-medium"><span className="text-red-500">&nbsp;*</span>Kata Sandi</label>
+                        <input
+                        type="password" className="form-input mt-1 block w-full text-sm rounded-md border-gray-300 shadow-sm" 
+                        placeholder="Kata Sandi" />
                       </div>
 
                       <div>
@@ -53,11 +59,13 @@ export default function login() {
 
                       {/* Button */}
                       <div className='text-center'>
-                        <Link href="/">
-                          <button type='submit' className="w-52 h-8 mt-6 text-xs rounded text-slate-50 bg-fuchsia-600 hover:bg-fuchsia-500 shadow hover:shadow-fuchsia-500/50">
+                        {/* <Link href="/"> */}
+                          <button type='submit' onClick={()=>{
+                            document.cookie = 'token=123; path=/'
+                          }} className="w-52 h-8 mt-6 text-xs rounded text-slate-50 bg-fuchsia-600 hover:bg-fuchsia-500 shadow hover:shadow-fuchsia-500/50">
                             Masuk
                           </button>
-                        </Link>
+                        {/* </Link> */}
                       </div>
 
                       <div>

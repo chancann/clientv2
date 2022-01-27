@@ -1,7 +1,9 @@
-import { NextResponse, NextRequest } from "next/server";
+import {NextResponse} from 'next/server'
 
-export function middleware(req) {
-  if (!req.cookie) {
-    console.log("FORBIDDEN");
+export default function middleware(req, ev){
+  const {token} = req.cookies;
+
+  if (!token){
+    return NextResponse.redirect('/login')
   }
 }

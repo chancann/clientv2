@@ -1,7 +1,5 @@
-import Image from "next/image"
 import Link from "next/link"
-import MainLayout from "../components/layouts/MainLayout"
-import heroProduct from "../public/heroProduct.jpg"
+import MainLayout from "../../../components/layouts/MainLayout"
 
 export default function addProduct() {
   return (
@@ -20,26 +18,25 @@ export default function addProduct() {
               <form className="2lg:flex 2lg:gap-x-8">
                 <div className="w-full py-6">
                   <div className="block text-sm">
-                    <label className="text-gray-800 font-medium">Nama Produk</label>
-                    <input type="text" className="form-input mt-1 block w-full text-sm rounded-md border-gray-300 shadow-sm
-                        focus:border-fuchsia-300 focus:ring focus:ring-fuchsia-200 focus:ring-opacity-50" placeholder="Nama Produk" />
+                    <label className="text-gray-800 font-medium"><span className="text-red-500">&nbsp;*</span>Nama Produk</label>
+                    <input type="text" className="form-input mt-1 block w-full text-sm rounded-md border-gray-300 shadow-sm" 
+                    placeholder="Nama Produk" />
                   </div>
                   <div className="block text-sm mt-5">
-                    <label className="text-gray-800 font-medium">Harga</label>
-                    <input type="text" className="form-input mt-1 block w-full text-sm rounded-md border-gray-300 shadow-sm
-                        focus:border-fuchsia-300 focus:ring focus:ring-fuchsia-200 focus:ring-opacity-50" placeholder="Harga" />
+                    <label className="text-gray-800 font-medium"><span className="text-red-500">&nbsp;*</span>Harga</label>
+                    <input type="text" className="form-input mt-1 block w-full text-sm rounded-md border-gray-300 shadow-sm" 
+                    placeholder="Harga" />
                   </div>
                   <div className="flex flex-col mt-5 text-sm">
-                    <label className="text-gray-800 font-medium">Gambar</label>
+                    <label className="text-gray-800 font-medium"><span className="text-red-500">&nbsp;*</span>Gambar</label>
                     <input type="file" className="mt-1 text-gray-800" />
                   </div>
                 </div>
 
                 <div className="w-full 2lg:py-6">
                   <div className="block text-sm">
-                    <label className="text-gray-800 font-medium">Kategori</label>
-                    <select className="form-select mt-1 block w-full text-sm rounded-md border-gray-300 shadow-sm
-                        focus:border-fuchsia-300 focus:ring focus:ring-fuchsia-200 focus:ring-opacity-50">
+                    <label className="text-gray-800 font-medium"><span className="text-red-500">&nbsp;*</span>Kategori</label>
+                    <select className="form-select mt-1 block w-full text-sm rounded-md border-gray-300 shadow-sm">
                       <option>Pilih Kategori</option>
                       <option>Makanan</option>
                       <option>Minuman</option>
@@ -49,9 +46,9 @@ export default function addProduct() {
                     </select>
                   </div>
                   <div className="block text-sm mt-5">
-                    <label className="text-gray-800 font-medium">Deskripsi</label>
-                    <textarea className="form-input mt-1 block w-full text-sm rounded-md border-gray-300 shadow-sm
-                        focus:border-fuchsia-300 focus:ring focus:ring-fuchsia-200 focus:ring-opacity-50" placeholder="Deskripsi">
+                    <label className="text-gray-800 font-medium"><span className="text-red-500">&nbsp;*</span>Deskripsi</label>
+                    <textarea className="form-input mt-1 block w-full text-sm rounded-md border-gray-300 shadow-sm" 
+                    placeholder="Deskripsi">
                     </textarea>
                   </div>
                 </div>

@@ -21,7 +21,7 @@ export default function register() {
   });
 
   // method
-  const submitForm = async (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
     try {
       const response = await axios.post("http://localhost:8080/api/user/add", form);
@@ -51,10 +51,10 @@ export default function register() {
                 </h2>
               </div>
 
-              <form className="2lg:flex 2lg:gap-x-8">
+              <form className="2lg:flex 2lg:gap-x-8" onSubmit={handleSubmit}>
                 <div className="w-full py-6">
                   <div className="block text-sm">
-                    <label className="text-gray-800 font-medium">NIK</label>
+                    <label className="text-gray-800 font-medium"><span className="text-red-500">&nbsp;*</span>NIK</label>
                     <input
                       onChange={(e) => {
                         setForm({
@@ -64,13 +64,12 @@ export default function register() {
                       }}
                       value={form.nik}
                       type="text"
-                      className="form-input mt-1 block w-full text-sm rounded-md border-gray-300 shadow-sm
-                        focus:border-fuchsia-300 focus:ring focus:ring-fuchsia-200 focus:ring-opacity-50"
+                      className="form-input mt-1 block w-full text-sm rounded-md border-gray-300 shadow-sm"
                       placeholder="Nomor NIK"
                     />
                   </div>
                   <div className="block text-sm mt-5">
-                    <label className="text-gray-800 font-medium">Nama Lengkap</label>
+                    <label className="text-gray-800 font-medium"><span className="text-red-500">&nbsp;*</span>Nama Lengkap</label>
                     <input
                       onChange={(e) => {
                         setForm({
@@ -80,13 +79,12 @@ export default function register() {
                       }}
                       value={form.nama_lengkap}
                       type="text"
-                      className="form-input mt-1 block w-full text-sm rounded-md border-gray-300 shadow-sm
-                        focus:border-fuchsia-300 focus:ring focus:ring-fuchsia-200 focus:ring-opacity-50"
+                      className="form-input mt-1 block w-full text-sm rounded-md border-gray-300 shadow-sm"
                       placeholder="Nama Lengkap"
                     />
                   </div>
                   <div className="block text-sm mt-5">
-                    <label className="text-gray-800 font-medium">No HP</label>
+                    <label className="text-gray-800 font-medium"><span className="text-red-500">&nbsp;*</span>No HP</label>
                     <input
                       onChange={(e) => {
                         setForm({
@@ -96,13 +94,12 @@ export default function register() {
                       }}
                       value={form.no_hp}
                       type="text"
-                      className="form-input mt-1 block w-full text-sm rounded-md border-gray-300 shadow-sm
-                        focus:border-fuchsia-300 focus:ring focus:ring-fuchsia-200 focus:ring-opacity-50"
+                      className="form-input mt-1 block w-full text-sm rounded-md border-gray-300 shadow-sm"
                       placeholder="08xxxxxxxxxx"
                     />
                   </div>
                   <div className="block text-sm mt-5">
-                    <label className="text-gray-800 font-medium">Alamat Usaha</label>
+                    <label className="text-gray-800 font-medium"><span className="text-red-500">&nbsp;*</span>Alamat Usaha</label>
                     <textarea
                       onChange={(e) => {
                         setForm({
@@ -111,8 +108,7 @@ export default function register() {
                         });
                       }}
                       value={form.alamat}
-                      className="form-input mt-1 block w-full text-sm rounded-md border-gray-300 shadow-sm
-                        focus:border-fuchsia-300 focus:ring focus:ring-fuchsia-200 focus:ring-opacity-50"
+                      className="form-input mt-1 block w-full text-sm rounded-md border-gray-300 shadow-sm"
                       placeholder="Jl. Raya Mauk No.89, Sepatan, Tangerang, Banten 15520, Indonesia"
                     ></textarea>
                   </div>
@@ -120,7 +116,7 @@ export default function register() {
 
                 <div className="w-full 2lg:py-6">
                   <div className="block text-sm">
-                    <label className="text-gray-800 font-medium">Email</label>
+                    <label className="text-gray-800 font-medium"><span className="text-red-500">&nbsp;*</span>Email</label>
                     <input
                       onChange={(e) => {
                         setForm({
@@ -130,13 +126,12 @@ export default function register() {
                       }}
                       value={form.email}
                       type="email"
-                      className="form-input mt-1 block w-full text-sm rounded-md border-gray-300 shadow-sm
-                        focus:border-fuchsia-300 focus:ring focus:ring-fuchsia-200 focus:ring-opacity-50"
+                      className="form-input mt-1 block w-full text-sm rounded-md border-gray-300 shadow-sm"
                       placeholder="pojokumkm@contoh.com"
                     />
                   </div>
                   <div className="block text-sm mt-5">
-                    <label className="text-gray-800 font-medium">Kata Sandi</label>
+                    <label className="text-gray-800 font-medium"><span className="text-red-500">&nbsp;*</span>Kata Sandi</label>
                     <input
                       onChange={(e) => {
                         setForm({
@@ -146,22 +141,20 @@ export default function register() {
                       }}
                       value={form.password}
                       type="password"
-                      className="form-input mt-1 block w-full text-sm rounded-md border-gray-300 shadow-sm
-                        focus:border-fuchsia-300 focus:ring focus:ring-fuchsia-200 focus:ring-opacity-50"
+                      className="form-input mt-1 block w-full text-sm rounded-md border-gray-300 shadow-sm"
                       placeholder="Kata Sandi"
                     />
                   </div>
                   <div className="block text-sm mt-5">
-                    <label className="text-gray-800 font-medium">Verifikasi Kata Sandi</label>
+                    <label className="text-gray-800 font-medium"><span className="text-red-500">&nbsp;*</span>Verifikasi Kata Sandi</label>
                     <input
                       type="password"
-                      className="form-input mt-1 block w-full text-sm rounded-md border-gray-300 shadow-sm
-                        focus:border-fuchsia-300 focus:ring focus:ring-fuchsia-200 focus:ring-opacity-50"
+                      className="form-input mt-1 block w-full text-sm rounded-md border-gray-300 shadow-sm"
                       placeholder="Verifikasi Kata Sandi"
                     />
                   </div>
                   <div className="block text-sm mt-5">
-                    <label className="text-gray-800 font-medium">Jenis Kelamin</label>
+                    <label className="text-gray-800 font-medium"><span className="text-red-500">&nbsp;*</span>Jenis Kelamin</label>
                     <select
                       onChange={(e) => {
                         setForm({
@@ -170,8 +163,7 @@ export default function register() {
                         });
                       }}
                       value={form.jenis_kelamin}
-                      className="form-select mt-1 block w-full text-sm rounded-md border-gray-300 shadow-sm
-                        focus:border-fuchsia-300 focus:ring focus:ring-fuchsia-200 focus:ring-opacity-50"
+                      className="form-select mt-1 block w-full text-sm rounded-md border-gray-300 shadow-sm"
                     >
                       <option>Pilih Jenis Kelamin</option>
                       <option>Laki-laki</option>
@@ -179,13 +171,13 @@ export default function register() {
                     </select>
                   </div>
                 </div>
+                <div className="text-center">
+                  <button onClick={handleSubmit} type="submit" className="w-52 h-8 mt-6 text-xs rounded text-slate-50 bg-fuchsia-600 hover:bg-fuchsia-500 shadow hover:shadow-fuchsia-500/50">
+                    Masuk
+                  </button>
+                </div>
               </form>
-              {/* Button */}
-              <div className="text-center">
-                <button onClick={submitForm} type="submit" className="w-52 h-8 mt-6 text-xs rounded text-slate-50 bg-fuchsia-600 hover:bg-fuchsia-500 shadow hover:shadow-fuchsia-500/50">
-                  Masuk
-                </button>
-              </div>
+              
               <div>
                 <p className="text-center text-xs text-gray-800 mt-6">
                   Sudah punya akun?
