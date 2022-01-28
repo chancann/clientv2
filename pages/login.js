@@ -3,9 +3,43 @@ import Image from "next/image";
 import Link from "next/link";
 import MainLayout from "../components/layouts/MainLayout";
 import heroLogin from "../public/heroLogin.svg"
-
+import baseURL from "../api/baseURL";
+import Cookies from "js-cookie"
+import { useForm } from "react-hook-form";
+import { useRouter } from "next/router";
 
 export default function login() {
+  const router = useRouter()
+  const {register, handleSubmit, formState:{errors}} = useForm();
+
+  const onSubmit = async (data) => {
+    console.log(data);
+    try {
+      const doLogin = await baseURL.post("/api/user/login", data);
+      if (doLogin.data.status === 200){
+        console.log(doLogin);
+        Cookies.set('token', doLogin.data.data.token, {expires:1})
+        router.push('/')
+      }
+    } catch (error) {
+      console.log(error);
+    }
+  }
+
+
+  // const loginHandler = async (e) => {
+  //   e.preventDefault()
+  //   try {
+  //     const doLogin = await baseURL.post("/api/user/login",form);
+  //     console.log(doLogin);
+  //     if (doLogin.data.status === 200){
+  //       Cookies.set('token', doLogin.data.token, {expires:1})
+  //       router.push('/')
+  //     }
+  //   } catch (error) {
+  //     console.log(error);
+  //   }
+  // }
   
   return (
     <>
@@ -29,21 +63,29 @@ export default function login() {
                     </h2>
                   </div>
 
-                  <form>
+                  <form onSubmit={handleSubmit(onSubmit)}>
                     <div className="py-6">
                       <div className="block text-sm">
                         <label className="text-gray-800 font-medium"><span className="text-red-500">&nbsp;*</span>Email</label>
-                        <input 
-                        type="email" className="form-input peer mt-1 block w-full text-sm rounded-md border-gray-300 shadow-sm
-                        invalid:border-red-500 invalid:text-red-600
-                        focus:invalid:border-red-500 focus:invalid:ring-red-500" placeholder="pojokumkm@contoh.com" />
-                        <p className="mt-2 hidden peer-invalid:block text-red-600 text-xs">
-                          Email tidak valid!
-                        </p>
+                        <input
+                        {...register('email', {
+                          required:{
+                            value:true,
+                          }
+                        })}
+                        // onChange={(e) => {setForm({...form, email: e.target.value})}}
+                        type="email" className="form-input peer mt-1 block w-full text-sm rounded-md border-gray-300 shadow-sm" placeholder="pojokumkm@contoh.com"/>
                       </div>
                       <div className="block text-sm mt-5">
-                        <label className="text-gray-800 font-medium"><span className="text-red-500">&nbsp;*</span>Kata Sandi</label>
+                        <label
+                        // onChange={(e) => {setForm({...form, password: e.target.value})}}
+                        className="text-gray-800 font-medium"><span className="text-red-500">&nbsp;*</span>Kata Sandi</label>
                         <input
+                        {...register('password', {
+                          required:{
+                            value:true,
+                          }
+                        })}
                         type="password" className="form-input mt-1 block w-full text-sm rounded-md border-gray-300 shadow-sm" 
                         placeholder="Kata Sandi" />
                       </div>
@@ -60,9 +102,7 @@ export default function login() {
                       {/* Button */}
                       <div className='text-center'>
                         {/* <Link href="/"> */}
-                          <button type='submit' onClick={()=>{
-                            document.cookie = 'token=123; path=/'
-                          }} className="w-52 h-8 mt-6 text-xs rounded text-slate-50 bg-fuchsia-600 hover:bg-fuchsia-500 shadow hover:shadow-fuchsia-500/50">
+                          <button type='submit' className="w-52 h-8 mt-6 text-xs rounded text-slate-50 bg-fuchsia-600 hover:bg-fuchsia-500 shadow hover:shadow-fuchsia-500/50">
                             Masuk
                           </button>
                         {/* </Link> */}
