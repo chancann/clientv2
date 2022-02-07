@@ -69,7 +69,8 @@ export default function addProduct() {
                 </h2>
               </div>
 
-              <form onSubmit={handleSubmit} className="2lg:flex 2lg:gap-x-8">
+              <form onSubmit={handleSubmit}>
+                <div className="2lg:flex 2lg:gap-x-8">
                 <div className="w-full py-6">
                   <div className="block text-sm">
                     <label className="text-gray-800 font-medium"><span className="text-red-500">&nbsp;*</span>Nama Produk</label>
@@ -81,9 +82,11 @@ export default function addProduct() {
                     <input onChange={(e) => { setForm({...form, price : e.target.value})}} type="text" className="form-input mt-1 block w-full text-sm rounded-md border-gray-300 shadow-sm" 
                     placeholder="Harga" />
                   </div>
-                  <div className="flex flex-col mt-5 text-sm">
-                    <label className="text-gray-800 font-medium"><span className="text-red-500">&nbsp;*</span>Gambar</label>
-                    <input onChange={filesChange} multiple type="file" className="mt-1 text-gray-800" />
+                  <div className="block text-sm mt-5">
+                    <label className="text-gray-800 font-medium"><span className="text-red-500">&nbsp;*</span>Deskripsi</label>
+                    <textarea onChange={(e) => { setForm({...form, description : e.target.value})}}  className="form-input mt-1 block w-full text-sm rounded-md border-gray-300 shadow-sm" 
+                    placeholder="Deskripsi">
+                    </textarea>
                   </div>
                 </div>
 
@@ -99,24 +102,23 @@ export default function addProduct() {
                       <option>Perawatan Tubuh</option>
                     </select>
                   </div>
-                  <div className="block text-sm mt-5">
-                    <label className="text-gray-800 font-medium"><span className="text-red-500">&nbsp;*</span>Deskripsi</label>
-                    <textarea onChange={(e) => { setForm({...form, description : e.target.value})}}  className="form-input mt-1 block w-full text-sm rounded-md border-gray-300 shadow-sm" 
-                    placeholder="Deskripsi">
-                    </textarea>
+                  <div className="flex flex-col mt-5 mb-2 text-sm">
+                    <label className="text-gray-800 font-medium"><span className="text-red-500">&nbsp;*</span>Gambar</label>
+                    <input onChange={filesChange} multiple type="file" className="mt-1 text-gray-800" />
+                  </div>
+                  <div className="grid grid-cols-4 gap-4">
+                    {urls.map((url, index) => (
+                      <img key={index} src={url.url}/>
+                    ))}
                   </div>
                 </div>
+              </div>
               <div className='text-center'>
                   <button  className="w-52 h-8 mt-6 text-xs rounded text-slate-50 bg-fuchsia-600 hover:bg-fuchsia-500 shadow hover:shadow-fuchsia-500/50">
                     Tambahkan Produk
                   </button>
               </div>
               </form>
-
-              {urls.map((url, index) => (
-                <img key={index} src={url.url}/>
-              ))}
-              {/* Button */}
             </div>
 
           </div>

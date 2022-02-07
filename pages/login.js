@@ -13,7 +13,7 @@ export default function login() {
   const {register, handleSubmit, formState:{errors}} = useForm();
 
   const onSubmit = async (data) => {
-    console.log(data);
+    // console.log(data);
     try {
       const doLogin = await baseURL.post("/api/user/login", data);
       if (doLogin.data.status === 200){

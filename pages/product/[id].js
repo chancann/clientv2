@@ -42,6 +42,7 @@ export default function detail() {
   const getProductDetails = async () => {
     try {
       const response = await baseURL.get(`api/product/${router.query.id}`);
+      // console.log(response);
 
       if (response.data.status === 200) {
         setDetails(response.data.data);
@@ -56,6 +57,11 @@ export default function detail() {
     getProductDetails();
   }, [router]);
 
+  const formatRupiah = (money) => {
+    return new Intl.NumberFormat('id-ID',
+      { style: 'currency', currency: 'IDR', minimumFractionDigits: 0 }
+    ).format(money);
+  }
   return (
     <>
       <MainLayout>
@@ -73,16 +79,18 @@ export default function detail() {
             <div className="md:w-4/5 h-auto md:p-4 text-gray-800">
               <h2 className="mb-2 text-xl font-bold">{details.category}</h2>
               <h3 className="mb-2 text-lg font-bold tracking-tight text-fuchsia-900/90">{details.title}</h3>
-              <h5 className="mb-2 text-xs">{author.nama_lengkap}</h5>
+              <h5 className="mb-2 text-xs font-medium">{author.nama_lengkap}</h5>
               <h4 className="mb-2 font-medium">{author.alamat}</h4>
               <h6 className="mb-2 text-xs">{details.description}</h6>
               <h3 className="mb-2 text-sm font-medium">
                 Harga:
-                <p className="text-lg font-semibold text-red-400">Rp. 20.000</p>
+                <p className="text-lg font-semibold text-red-400">{`${formatRupiah(details.price)}`}</p>
               </h3>
-              <a target="_blank" href={`https://api.whatsapp.com/send?phone=${author.no_hp}&text=Hallo+Bisa+saya+pesan+${details.title}`} className="w-52 h-8 text-xs rounded text-slate-50 bg-fuchsia-600 hover:bg-fuchsia-500 shadow hover:shadow-fuchsia-500/50">
-                Hubungi Penjual
-              </a>
+              <button className="w-52 h-8 text-xs rounded text-slate-50 bg-fuchsia-600 hover:bg-fuchsia-500 shadow hover:shadow-fuchsia-500/50">
+                <a target="_blank" href={`https://api.whatsapp.com/send?phone=${author.no_hp}&text=Hallo+Bisa+saya+pesan+${details.title}`} >
+                  Hubungi Penjual
+                </a>
+              </button>
             </div>
           </div>
         </section>

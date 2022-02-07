@@ -1,6 +1,7 @@
 import Image from "next/image";
-import Slider from "react-slick";
-import Card from "../components/Card";
+// import Slider from "react-slick";
+// import Card from "../components/Card";
+import Link from "next/link";
 import MainLayout from "../components/layouts/MainLayout";
 import heroHome from "../public/heroHome.svg"
 import "slick-carousel/slick/slick.css"
@@ -57,11 +58,11 @@ export default function Home() {
           </div>
 
           <div className='text-center 2lg:text-left'>
-            <a href='https://drive.google.com/file/d/12f9z7cLPHpJ_uB2jN77Biu3W38CMrB1j/view'>
+            <Link href='/product'>
               <button className='w-52 h-8 text-xs rounded text-slate-50 bg-fuchsia-600 hover:bg-fuchsia-500 shadow hover:shadow-fuchsia-500/50'>
                 Katalog Produk
               </button>
-            </a>
+            </Link>
           </div>
         </div>
 
@@ -71,106 +72,6 @@ export default function Home() {
         </figure>
       </section>
       {/* Home */}
-
-      {/* Product */}
-      <section className="font-poppins">
-        <div className="text-gray-800">
-          <div className='text-center'>
-            <h2 className='p-4 font-bold text-3xl'>Produk</h2>
-          </div>
-
-          {/* Card */}
-          <div className="pb-10">
-            <Slider {...settings}>
-              <div className="p-2">
-                <Card />
-              </div>
-              <div className="p-2">
-                <Card />
-              </div>
-              <div className="p-2">
-                <Card />
-              </div>
-              <div className="p-2">
-                <Card />
-              </div>
-              <div className="p-2">
-                <Card />
-              </div>
-              <div className="p-2">
-                <Card />
-              </div>
-            </Slider>
-          </div>
-          {/* Card */}
-        </div>
-      </section>
-      <section className="font-poppins">
-        <div className="text-gray-800">
-          <div className='text-center'>
-            <h2 className='p-4 font-bold text-3xl'>Produk</h2>
-          </div>
-
-          {/* Card */}
-          <div className="pb-10">
-            <Slider {...settings}>
-              <div className="p-2">
-                <Card />
-              </div>
-              <div className="p-2">
-                <Card />
-              </div>
-              <div className="p-2">
-                <Card />
-              </div>
-              <div className="p-2">
-                <Card />
-              </div>
-              <div className="p-2">
-                <Card />
-              </div>
-              <div className="p-2">
-                <Card />
-              </div>
-            </Slider>
-          </div>
-          {/* Card */}
-        </div>
-      </section>
-      <section className="font-poppins">
-        <div className="text-gray-800">
-          <div className='text-center'>
-            <h2 className='p-4 font-bold text-3xl'>Produk</h2>
-          </div>
-
-          {/* Card */}
-          <div className="pb-10">
-            <Slider {...settings}>
-              <div className="p-2">
-                <Card />
-              </div>
-              <div className="p-2">
-                <Card />
-              </div>
-              <div className="p-2">
-                <Card />
-              </div>
-              <div className="p-2">
-                <Card />
-              </div>
-              <div className="p-2">
-                <Card />
-              </div>
-              <div className="p-2">
-                <Card />
-              </div>
-            </Slider>
-          </div>
-          {/* Card */}
-        </div>
-      </section>
-      {/* Product */}
-
     </MainLayout >
   )
 }

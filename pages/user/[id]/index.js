@@ -110,22 +110,27 @@ export default function profile() {
     <>
       <MainLayout>
         <section className="flex items-center min-h-screen font-poppins">
-          <Link href={`/user/${router.query.id}/add-product`}>tambah product</Link>
           <div className="w-full mt-20 2lg:mt-0">
             <div className="w-full flex flex-col 2lg:flex-row items-center">
-              <figure className="text-center 2lg:mb-10">
+              <figure className="md:w-6/12 text-center 2lg:mb-10">
                 <div className="block text-center">
                   <h2 className="p-4 text-gray-800 font-bold text-3xl">Profil</h2>
                 </div>
-                <div className="p-2">
+                <div className="flex p-2 items-center justify-center">
                   <img className="w-[150px] h-[150px] object-cover rounded-full" src={image}/>
                   {/* <Image src={image} alt="heroPhotoProfile" width={150} height={150} /> */}
                 </div>
-                <div>
+                {/* <div>
                   <input onChange={onFileChange} type="file" className="mt-1 w-full text-gray-800 text-sm" />
+                </div> */}
+                <div className="flex items-center justify-center mt-2">
+                  <label className="flex py-1 px-2 flex-col items-center rounded tracking-wide border cursor-pointer hover:bg-fuchsia-500 hover:text-white">
+                      <span className="text-sm leading-normal">Pilih Foto Profil</span>
+                      <input onChange={onFileChange} type='file' className="hidden" />
+                  </label>
                 </div>
               </figure>
-              <div className="w-full text-gray-800">
+              <div className="md:w-6/12 text-gray-800">
                 <div className="mt-10 2lg:mt-0">
                   <table className="w-full">
                     <tbody className="text-sm">
@@ -162,8 +167,13 @@ export default function profile() {
                     </tbody>
                   </table>
                 </div>
+              <div className="md:w-6/12 flex items-center justify-center mt-4 gap-x-6">
+                <Link href={`/user/${router.query.id}/add-product`}>
+                  <button className='w-28 h-8 text-xs rounded text-slate-50 bg-fuchsia-600 hover:bg-fuchsia-500 shadow hover:shadow-fuchsia-500/50'>Tambah Produk</button>
+                </Link>
+                <button onClick={updateUser} className='w-24 h-8 text-xs rounded text-slate-50 bg-fuchsia-600 hover:bg-fuchsia-500 shadow hover:shadow-fuchsia-500/50'>Simpan Profil</button>
               </div>
-              <button onClick={updateUser}>Save</button>
+              </div>
             </div>
           </div>
         </section>

@@ -6,7 +6,7 @@ import Cookie from 'js-cookie'
 import decode from 'jwt-decode'
 
 export default function Header() {
-  const [user , setUser] = useState({})
+  const [user, setUser] = useState({})
   const [isLoggedIn, setIsLoggedIn] = useState(false)
   const [isOpen, setIsOpen] = useState(false)
 
@@ -24,7 +24,7 @@ export default function Header() {
       setIsLoggedIn(true)
     }
   }, []);
-  
+
 
   return (
     <header className='w-full py-6 fixed top-0 z-10 bg-white/95 border-b shadow-sm'>
@@ -66,23 +66,23 @@ export default function Header() {
           </div>
 
           {isLoggedIn ?
-            <div className='flex sm-tablet:flex-row flex-col items-center border-t sm-tablet:border-t-0'>
-              <Link className="cursor-pointer" href={`/user/${user._id}`}>
-                <div className='flex mt-4 sm-tablet:mt-0 items-center'>
-                  <figure className=' flexborder'>
+            <div className='flex md:flex-row flex-col items-center border-t md:border-t-0 md:gap-2'>
+              <Link href={`/user/${user._id}`}>
+                <button className='flex mt-4 md:mt-0 items-center hover:text-fuchsia-500'>
+                  <figure className=''>
                     <svg xmlns="http://www.w3.org/2000/svg" className="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5.121 17.804A13.937 13.937 0 0112 16c2.5 0 4.847.655 6.879 1.804M15 10a3 3 0 11-6 0 3 3 0 016 0zm6 2a9 9 0 11-18 0 9 9 0 0118 0z" />
+                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M5.121 17.804A13.937 13.937 0 0112 16c2.5 0 4.847.655 6.879 1.804M15 10a3 3 0 11-6 0 3 3 0 016 0zm6 2a9 9 0 11-18 0 9 9 0 0118 0z" />
                     </svg>
                   </figure>
                   <div className='mx-2 text-sm'>
                     {user ? user.nama : ''}
                   </div>
-                </div>
+                </button>
               </Link>
               <div>
-                  <button onClick={logoutHandler} type='button' className={`w-48 sm-tablet:w-28 mt-4 sm-tablet:mt-0 p-2 font-medium text-sm text-white-1 bg-purple-1 border rounded hover:text-purple-2`}>
-                    Keluar
-                  </button>
+                <button onClick={logoutHandler} type='button' className={`w-24 h-8 mt-4 md:mt-0 text-xs rounded text-slate-50 bg-fuchsia-600 hover:bg-fuchsia-500 shadow hover:shadow-fuchsia-500/50`}>
+                  Keluar
+                </button>
               </div>
             </div>
             :
