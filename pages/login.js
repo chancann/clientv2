@@ -17,7 +17,7 @@ export default function login() {
     try {
       const doLogin = await baseURL.post("/api/user/login", data);
       if (doLogin.data.status === 200){
-        console.log(doLogin);
+        // console.log(doLogin);
         Cookies.set('token', doLogin.data.data.token, {expires:1})
         router.push('/')
       }

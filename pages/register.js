@@ -29,7 +29,7 @@ export default function register() {
         };
         // router.push("/");
         const doLogin = await baseURL.post("/api/user/login", userData);
-        console.log(doLogin);
+        // console.log(doLogin);
         if (doLogin.data.status === 200) {
           Cookies.set("token", doLogin.data.data.token, { expires: 1 });
           router.push("/");
