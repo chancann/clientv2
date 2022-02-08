@@ -151,7 +151,7 @@ export default function profile() {
                         <td className="text-xs p-2 text-gray-500">
                         <input onChange={(e) => {
                             setDetailUser({...detailUser, no_hp : e.target.value})
-                          }} value={detailUser.no_hp} />
+                          }} value={`0${detailUser.no_hp}`} />
                         </td>
                       </tr>
                       <tr>

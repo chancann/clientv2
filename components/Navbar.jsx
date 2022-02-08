@@ -4,8 +4,13 @@ import { useState } from "react"
 import { useEffect } from "react"
 import Cookie from 'js-cookie'
 import decode from 'jwt-decode'
+import { useRouter } from 'next/router'
+import { ToastContainer, toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
+
 
 export default function Header() {
+  const router = useRouter()
   const [user, setUser] = useState({})
   const [isLoggedIn, setIsLoggedIn] = useState(false)
   const [isOpen, setIsOpen] = useState(false)
@@ -13,6 +18,16 @@ export default function Header() {
   // methods
   const logoutHandler = () => {
     Cookie.remove('token')
+    toast.success('Berhasil keluar!', {
+      position: "top-right",
+      autoClose: 5000,
+      hideProgressBar: false,
+      closeOnClick: true,
+      pauseOnHover: true,
+      draggable: true,
+      progress: undefined,
+    });
+    router.push('/login')
     setIsLoggedIn(false)
   }
 
@@ -83,6 +98,17 @@ export default function Header() {
                 <button onClick={logoutHandler} type='button' className={`w-24 h-8 mt-4 md:mt-0 text-xs rounded text-slate-50 bg-fuchsia-600 hover:bg-fuchsia-500 shadow hover:shadow-fuchsia-500/50`}>
                   Keluar
                 </button>
+                <ToastContainer
+                  position="top-right"
+                  autoClose={5000}
+                  hideProgressBar={false}
+                  newestOnTop={false}
+                  closeOnClick
+                  rtl={false}
+                  pauseOnFocusLoss
+                  draggable
+                  pauseOnHover
+                />
               </div>
             </div>
             :

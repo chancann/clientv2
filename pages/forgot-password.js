@@ -18,7 +18,7 @@ export default function forgotPassword() {
               <form>
                 <div className="py-6">
                   <div className="block text-sm">
-                    <label className="text-gray-800 font-medium"><span className="text-red-500">&nbsp;*</span>Email</label>
+                    <label className="px-2 text-gray-800 font-medium">Email</label>
                     <input type="email" className="form-input mt-1 block w-full text-sm rounded-md border-gray-300 shadow-sm" 
                     placeholder="pojokumkm@contoh.com" />
                   </div>

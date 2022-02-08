@@ -6,6 +6,8 @@ import baseURL from "../api/baseURL";
 import Cookies from "js-cookie";
 import { useRouter } from "next/router";
 import { useForm } from "react-hook-form";
+import { ToastContainer, toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 
 export default function register() {
   const router = useRouter();
@@ -20,7 +22,7 @@ export default function register() {
     console.log(data);
     // e.preventDefault();
     try {
-      const registerRes = await baseURL.post("/api/user/add", data);
+      const registerRes = await baseURL.post("/api/user/add", {...data, no_hp: parseInt(`${62}${data.no_hp.slice(1,-1)}`)});
       // console.log(response);
       if (registerRes.data.status === 200) {
         const userData = {
@@ -32,7 +34,26 @@ export default function register() {
         // console.log(doLogin);
         if (doLogin.data.status === 200) {
           Cookies.set("token", doLogin.data.data.token, { expires: 1 });
+          toast.success('Selamat bergabung!', {
+            position: "top-right",
+            autoClose: 5000,
+            hideProgressBar: false,
+            closeOnClick: true,
+            pauseOnHover: true,
+            draggable: true,
+            progress: undefined,
+            });
           router.push("/");
+        } else {
+          toast.error('Tidak valid!', {
+            position: "top-right",
+            autoClose: 5000,
+            hideProgressBar: false,
+            closeOnClick: true,
+            pauseOnHover: true,
+            draggable: true,
+            progress: undefined,
+            });
         }
       }
     } catch (error) {
@@ -73,8 +94,8 @@ export default function register() {
                 <div className="2lg:flex 2lg:gap-x-8">
                   <div className="w-full py-6">
                     <div className="block text-sm">
-                      <label className="text-gray-800 font-medium">
-                        <span className="text-red-500">&nbsp;*</span>NIK
+                      <label className="px-2 text-gray-800 font-medium">
+                        NIK
                       </label>
                       <input
                         {...register("nik", {
@@ -84,7 +105,7 @@ export default function register() {
                           },
                           pattern: {
                             value: /^-?[0-9]\d*\.?\d*$/,
-                            message: "Tidak boleh huruf, Masukkan angka!",
+                            message: "Tidak valid, Masukkan angka!",
                           },
                           minLength: {
                             value: 16,
@@ -102,8 +123,8 @@ export default function register() {
                       {errors.nik && <p className="px-2 pt-1 text-xs font-medium text-red-500">{errors.nik.message}</p>}
                     </div>
                     <div className="block text-sm mt-5">
-                      <label className="text-gray-800 font-medium">
-                        <span className="text-red-500">&nbsp;*</span>Nama Lengkap
+                      <label className="px-2 text-gray-800 font-medium">
+                        Nama Lengkap
                       </label>
                       <input
                         {...register("nama_lengkap", {
@@ -113,7 +134,7 @@ export default function register() {
                           },
                           minLength: {
                             value: 3,
-                            message: "Nama anda tidak lengkap!",
+                            message: "Tidak valid!",
                           },
                           maxLength: {
                             value: 30,
@@ -127,8 +148,8 @@ export default function register() {
                       {errors.nama_lengkap && <p className="px-2 pt-1 text-xs font-medium text-red-500">{errors.nama_lengkap.message}</p>}
                     </div>
                     <div className="block text-sm mt-5">
-                      <label className="text-gray-800 font-medium">
-                        <span className="text-red-500">&nbsp;*</span>No HP
+                      <label className="px-2 text-gray-800 font-medium">
+                        No HP
                       </label>
                       <input
                         {...register("no_hp", {
@@ -138,7 +159,7 @@ export default function register() {
                           },
                           pattern: {
                             value: /^-?[0-9]\d*\.?\d*$/,
-                            message: "Tidak boleh huruf, Masukkan angka!",
+                            message: "Tidak valid, Masukkan angka!",
                           },
                           minLength: {
                             value: 10,
@@ -159,12 +180,13 @@ export default function register() {
 
                   <div className="w-full 2lg:py-6">
                     <div className="block text-sm">
-                      <label className="text-gray-800 font-medium">
-                        <span className="text-red-500">&nbsp;*</span>Email
+                      <label className="px-2 text-gray-800 font-medium">
+                        Email
                       </label>
                       <input
                         {...register("email", {
                           required: {
+                            value:true,
                             message: "Masukkan email!",
                           },
                           pattern: {
@@ -179,8 +201,8 @@ export default function register() {
                       {errors.email && <p className="px-2 pt-1 text-xs font-medium text-red-500">{errors.email.message}</p>}
                     </div>
                     <div className="block text-sm mt-5">
-                      <label className="text-gray-800 font-medium">
-                        <span className="text-red-500">&nbsp;*</span>Kata Sandi
+                      <label className="px-2 text-gray-800 font-medium">
+                        Kata Sandi
                       </label>
                       <input
                         {...register("password", {
@@ -200,19 +222,19 @@ export default function register() {
                       {errors.password && <p className="px-2 pt-1 text-xs font-medium text-red-500">{errors.password.message}</p>}
                     </div>
                     <div className="block text-sm mt-5">
-                      <label className="text-gray-800 font-medium">
-                        <span className="text-red-500">&nbsp;*</span>Jenis Kelamin
+                      <label className="px-2 text-gray-800 font-medium">
+                        Jenis Kelamin
                       </label>
                       <select
-                        {...register("jenis_kelamin", {
-                          required: {
-                            value: true,
-                            message: "Pilih jenis kelamin!",
-                          },
-                        })}
+                      {...register("jenis_kelamin", {
+                        required: {
+                          value:true,
+                          message: "Pilih jenis kelamin!",
+                        },
+                      })}
                         className="form-select mt-1 block w-full text-sm rounded-md border-gray-300 shadow-sm"
                       >
-                        <option value="Pilih Jenis Kelamin">Pilih Jenis Kelamin</option>
+                        <option value="">Pilih Jenis Kelamin</option>
                         <option value="Laki-laki">Laki-laki</option>
                         <option value="Perempuan">Perempuan</option>
                       </select>
@@ -221,8 +243,8 @@ export default function register() {
                   </div>
                 </div>
                 <div className="block text-sm mt-5 2lg:mt-0">
-                  <label className="text-gray-800 font-medium">
-                    <span className="text-red-500">&nbsp;*</span>Alamat Usaha
+                  <label className="px-2 text-gray-800 font-medium">
+                    Alamat Usaha
                   </label>
                   <textarea
                     {...register("alamat", {
@@ -240,6 +262,17 @@ export default function register() {
                   <button type="submit" className="w-52 h-8 mt-6 text-xs rounded text-slate-50 bg-fuchsia-600 hover:bg-fuchsia-500 shadow hover:shadow-fuchsia-500/50">
                     Daftar
                   </button>
+                  <ToastContainer
+                  position="top-right"
+                  autoClose={5000}
+                  hideProgressBar={false}
+                  newestOnTop={false}
+                  closeOnClick
+                  rtl={false}
+                  pauseOnFocusLoss
+                  draggable
+                  pauseOnHover
+                  />
                 </div>
 
                 <div>

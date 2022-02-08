@@ -66,28 +66,32 @@ export default function login() {
                   <form onSubmit={handleSubmit(onSubmit)}>
                     <div className="py-6">
                       <div className="block text-sm">
-                        <label className="text-gray-800 font-medium"><span className="text-red-500">&nbsp;*</span>Email</label>
+                        <label className="px-2 text-gray-800 font-medium">Email</label>
                         <input
                         {...register('email', {
                           required:{
                             value:true,
+                            message:'Masukkan email!'
                           }
                         })}
                         // onChange={(e) => {setForm({...form, email: e.target.value})}}
                         type="email" className="form-input peer mt-1 block w-full text-sm rounded-md border-gray-300 shadow-sm" placeholder="pojokumkm@contoh.com"/>
+                        {errors.email && <p className="px-2 pt-1 text-xs font-medium text-red-500">{errors.email.message}</p>}
                       </div>
                       <div className="block text-sm mt-5">
                         <label
                         // onChange={(e) => {setForm({...form, password: e.target.value})}}
-                        className="text-gray-800 font-medium"><span className="text-red-500">&nbsp;*</span>Kata Sandi</label>
+                        className="px-2 text-gray-800 font-medium">Kata Sandi</label>
                         <input
                         {...register('password', {
                           required:{
                             value:true,
+                            message:'Masukkan password!'
                           }
                         })}
                         type="password" className="form-input mt-1 block w-full text-sm rounded-md border-gray-300 shadow-sm" 
                         placeholder="Kata Sandi" />
+                        {errors.password && <p className="px-2 pt-1 text-xs font-medium text-red-500">{errors.password.message}</p>}
                       </div>
 
                       <div>
