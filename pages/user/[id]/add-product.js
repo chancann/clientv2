@@ -5,7 +5,7 @@ import baseURL from "../../../api/baseURL";
 import { useRouter } from "next/router";
 import { useForm } from "react-hook-form";
 import Image from "next/image"
-import heroProduct from "../../../public/heroProduct.svg"
+import heroAddProduct from "../../../public/heroAddProduct.svg"
 
 export default function addProduct() {
   const router = useRouter()
@@ -72,7 +72,7 @@ export default function addProduct() {
         <section className="flex items-center min-h-screen font-poppins">
           <div className="w-full flex flex-col 2lg:flex-row items-center mt-20 2lg:mt-0">
             <figure className="hidden 2lg:inline-block">
-              <Image src={heroProduct} alt="heroProduct" width={600} height={600} />
+              <Image src={heroAddProduct} alt="heroAddProduct" width={650} height={650} />
             </figure>  
 
             <div className='w-full mx-auto px-6 py-4 rounded-md bg-gray-50/80'>

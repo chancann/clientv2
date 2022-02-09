@@ -48,13 +48,13 @@ export default function login() {
       </Head>
       <MainLayout>
         <section className="flex min-h-screen font-poppins">
-          <div className="flex w-full 2lg:mt-20 flex-col 2lg:gap-10 items-center justify-around 2lg:flex-row">
-                <figure className="hidden 2lg:inline-block">
-                  <Image src={heroLogin} alt="heroLogin" width={360} height={360} />
+          <div className="flex w-full m-auto 2lg:mt-20 flex-col items-center justify-between 2lg:flex-row">
+                <figure className="w-full hidden 2lg:inline-block">
+                  <Image src={heroLogin} alt="heroLogin" width={450} height={450}/>
                 </figure>        
 
               {/* Form */}
-              <div className='px-6 py-4 rounded-md bg-gray-50/80'>
+              <div className='w-10/12 px-6 py-4 rounded-md bg-gray-50/80'>
                 <div className='m-auto'>
                   <div>
                     <h2 className='text-center text-sm font-bold tracking-wide text-gray-800'>
@@ -64,7 +64,7 @@ export default function login() {
                   </div>
 
                   <form onSubmit={handleSubmit(onSubmit)}>
-                    <div className="py-6">
+                    <div className="w-10/12 m-auto py-6">
                       <div className="block text-sm">
                         <label className="px-2 text-gray-800 font-medium">Email</label>
                         <input
