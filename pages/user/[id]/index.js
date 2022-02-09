@@ -125,7 +125,10 @@ export default function profile() {
                 </div> */}
                 <div className="flex items-center justify-center mt-2">
                   <label className="flex py-1 px-2 flex-col items-center rounded tracking-wide border cursor-pointer hover:bg-fuchsia-500 hover:text-white">
-                      <span className="text-sm leading-normal">Pilih Foto Profil</span>
+                  <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" viewBox="0 0 20 20" fill="currentColor">
+                    <path fill-rule="evenodd" d="M4 5a2 2 0 00-2 2v8a2 2 0 002 2h12a2 2 0 002-2V7a2 2 0 00-2-2h-1.586a1 1 0 01-.707-.293l-1.121-1.121A2 2 0 0011.172 3H8.828a2 2 0 00-1.414.586L6.293 4.707A1 1 0 015.586 5H4zm6 9a3 3 0 100-6 3 3 0 000 6z" clip-rule="evenodd" />
+                  </svg>
+                      <span className="text-xs leading-none">Pilih Foto</span>
                       <input onChange={onFileChange} type='file' className="hidden" />
                   </label>
                 </div>
@@ -151,7 +154,7 @@ export default function profile() {
                         <td className="text-xs p-2 text-gray-500">
                         <input onChange={(e) => {
                             setDetailUser({...detailUser, no_hp : e.target.value})
-                          }} value={`0${detailUser.no_hp}`} />
+                          }} value={`+${detailUser.no_hp}`} />
                         </td>
                       </tr>
                       <tr>

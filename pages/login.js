@@ -47,14 +47,14 @@ export default function login() {
         <title>Masuk</title>
       </Head>
       <MainLayout>
-        <section className="flex min-h-screen font-poppins">
+        <section className="flex min-h-screen font-poppins justify-center">
           <div className="flex w-full m-auto 2lg:mt-20 flex-col items-center justify-between 2lg:flex-row">
                 <figure className="w-full hidden 2lg:inline-block">
-                  <Image src={heroLogin} alt="heroLogin" width={450} height={450}/>
+                  <Image src={heroLogin} alt="heroLogin" width={500} height={500}/>
                 </figure>        
 
               {/* Form */}
-              <div className='w-10/12 px-6 py-4 rounded-md bg-gray-50/80'>
+              <div className='md:w-9/12 px-6 py-4 rounded-md bg-gray-50/80'>
                 <div className='m-auto'>
                   <div>
                     <h2 className='text-center text-sm font-bold tracking-wide text-gray-800'>
@@ -64,7 +64,7 @@ export default function login() {
                   </div>
 
                   <form onSubmit={handleSubmit(onSubmit)}>
-                    <div className="w-10/12 m-auto py-6">
+                    <div className="m-auto px-4 py-6">
                       <div className="block text-sm">
                         <label className="px-2 text-gray-800 font-medium">Email</label>
                         <input

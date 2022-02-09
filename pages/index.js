@@ -40,10 +40,10 @@ export default function Home() {
   return (
     <MainLayout>
       {/* Home */}
-      <section className="flex min-h-screen items-center font-poppins">
+      <section className="flex min-h-screen items-center justify-center font-poppins">
         <div className='text-center 2lg:text-left'>
           <figure className='2lg:hidden'>
-            <Image src={heroHome} alt="heroHome" width={400} height={400} />
+            <Image src={heroHome} alt="heroHome" width={500} height={500}/>
           </figure>
 
           <div className="mb-2 text-gray-800">
@@ -68,7 +68,7 @@ export default function Home() {
 
 
         <figure className='m-auto hidden 2lg:inline-block'>
-          <Image src={heroHome} alt="heroHome" />
+          <Image src={heroHome} alt="heroHome" width={1000} height={1000}/>
         </figure>
       </section>
       {/* Home */}

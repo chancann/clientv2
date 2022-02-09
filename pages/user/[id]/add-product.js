@@ -69,8 +69,8 @@ export default function addProduct() {
   return (
     <>
       <MainLayout>
-        <section className="flex items-center min-h-screen font-poppins">
-          <div className="w-full flex flex-col 2lg:flex-row items-center mt-20 2lg:mt-0">
+        <section className="flex items-center min-h-screen justify-center font-poppins">
+          <div className="mx-auto w-full flex flex-col 2lg:flex-row items-center mt-20 2lg:mt-0">
             <figure className="hidden 2lg:inline-block">
               <Image src={heroAddProduct} alt="heroAddProduct" width={650} height={650} />
             </figure>  
@@ -150,7 +150,7 @@ export default function addProduct() {
                   <div className="flex flex-col mt-5 mb-2 text-sm">
                     <label className="px-2 text-gray-800 font-medium">Gambar Produk</label>
                     {/* <input onChange={filesChange} multiple type="file" className="mt-1 text-gray-800" /> */}
-                    <label className="flex py-1 px-2 mt-1 flex-col items-center rounded tracking-wide border cursor-pointer hover:bg-fuchsia-500 hover:text-white">
+                    <label className="w-32 flex py-1 flex-col px-2 mt-1 items-center rounded tracking-wide border cursor-pointer hover:bg-fuchsia-500 hover:text-white">
                       <input
                       {...register("image", {
                         required: {
@@ -159,10 +159,11 @@ export default function addProduct() {
                         },
                       })} 
                       onChange={filesChange} multiple type='file' className="hidden mb-2" />
-                      <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M4 16l4.586-4.586a2 2 0 012.828 0L16 16m-2-2l1.586-1.586a2 2 0 012.828 0L20 14m-6-6h.01M6 20h12a2 2 0 002-2V6a2 2 0 00-2-2H6a2 2 0 00-2 2v12a2 2 0 002 2z" />
+                      <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" viewBox="0 0 20 20" fill="currentColor">
+                        <path fill-rule="evenodd" d="M2 6a2 2 0 012-2h4l2 2h4a2 2 0 012 2v1H8a3 3 0 00-3 3v1.5a1.5 1.5 0 01-3 0V6z" clip-rule="evenodd" />
+                        <path d="M6 12a2 2 0 012-2h8a2 2 0 012 2v2a2 2 0 01-2 2H2h2a2 2 0 002-2v-2z" />
                       </svg>
-                      {/* <span className="text-sm leading-normal">Pilih Foto Profil</span> */}
+                      <span className="text-xs leading-none">Pilih Gambar</span>
                     </label>
                     {errors.image && <p className="px-2 pt-1 text-xs font-medium text-red-500">{errors.image.message}</p>}
                   </div>
