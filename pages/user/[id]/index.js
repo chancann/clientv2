@@ -8,18 +8,24 @@ import "slick-carousel/slick/slick-theme.css";
 import { useRouter } from "next/router";
 import baseURL from "../../../api/baseURL";
 import Link from "next/link";
+import CryptoJS from "crypto-js";
+import { ToastContainer, toast } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 
 export default function profile() {
-  const router = useRouter()
-  const [image, setImage] = useState("")
-  const [file, setFile] = useState()
+  const router = useRouter();
+  const [isPasswordShow, setIsPasswordShow] = useState(false);
+  const [image, setImage] = useState("");
+  const [file, setFile] = useState();
+  const [userProducts, setUserProducts] = useState([]);
   const [detailUser, setDetailUser] = useState({
-    nik: '',
-    email: '',
-    nama_lengkap: '',
+    nik: "",
+    email: "",
+    nama_lengkap: "",
     no_hp: 0,
-    alamat: ''
-  })
+    alamat: "",
+    password: "",
+  });
   const settings = {
     infinite: false,
     slidesToShow: 5,
@@ -50,64 +56,107 @@ export default function profile() {
   };
 
   const onFileChange = (e) => {
-    const file = e.target.files[0]
-    const url = URL.createObjectURL(file)
-    setFile(file)
-    setImage(url)
-  }
+    const file = e.target.files[0];
+    const url = URL.createObjectURL(file);
+    setFile(file);
+    setImage(url);
+  };
 
   const updateUser = async () => {
     try {
       if (file) {
-        const formData = new FormData()
-        formData.append('image', file)
-        formData.append('nama_lengkap', detailUser.nama_lengkap)
-        formData.append('no_hp', detailUser.no_hp)
-        formData.append('alamat', detailUser.alamat)
-        const response = await baseURL.put(`/api/user/update/${router.query.id}`, formData)
+        const formData = new FormData();
+        formData.append("image", file);
+        formData.append("nama_lengkap", detailUser.nama_lengkap);
+        formData.append("no_hp", detailUser.no_hp);
+        formData.append("alamat", detailUser.alamat);
+        const response = await baseURL.put(`/api/user/update/${router.query.id}`, formData);
         if (response.data.status === 200) {
-          getUserDetails()
+          getUserDetails();
+          toast.success("Profile Berhasil Di Update", {
+            position: "top-right",
+            autoClose: 5000,
+            hideProgressBar: false,
+            closeOnClick: true,
+            pauseOnHover: true,
+            draggable: true,
+            progress: undefined,
+          });
         }
+      } else {
+        toast.error(response.data.data, {
+          position: "top-right",
+          autoClose: 5000,
+          hideProgressBar: false,
+          closeOnClick: true,
+          pauseOnHover: true,
+          draggable: true,
+          progress: undefined,
+        });
       }
-      const response = await baseURL.put(`/api/user/update/${router.query.id}`, detailUser)
+      const response = await baseURL.put(`/api/user/update/${router.query.id}`, detailUser);
       if (response.data.status === 200) {
-        getUserDetails()
+        getUserDetails();
       }
     } catch (error) {
       console.log(error);
     }
-  }
-  
+  };
+
   const getUserDetails = async () => {
     try {
-      const response = await baseURL.get(`/api/user/details/${router.query.id}`)
+      const response = await baseURL.get(`/api/user/details/${router.query.id}`);
       if (response.data.status === 200) {
-        const user = response.data.data
+        const user = response.data.data;
+        const cryptoSec = "pojokumkmkecamatansepatankabupatentangerang";
+        const decryptPassword = CryptoJS.AES.decrypt(user.password, cryptoSec);
+        const userPassword = decryptPassword.toString(CryptoJS.enc.Utf8);
         setDetailUser({
           nik: user.nik,
           email: user.email,
           nama_lengkap: user.nama_lengkap,
           no_hp: user.no_hp,
-          alamat: user.alamat
-        })
-        setImage(`${baseURL.defaults.baseURL}/${user.image}`)
+          alamat: user.alamat,
+          password: userPassword,
+        });
+        setImage(`${baseURL.defaults.baseURL}/${user.image}`);
       }
     } catch (error) {
       console.log(error);
     }
-  }
+  };
+
+  const getUserProduct = async () => {
+    try {
+      const response = await baseURL.get(`/api/product/user/${router.query.id}`);
+      if (response.data.status === 200) {
+        const data = response.data.data;
+        let userProducts = [];
+
+        data.map((product) => {
+          userProducts.push({
+            ...product,
+          });
+        });
+        setUserProducts(data);
+      }
+    } catch (error) {
+      console.log(error);
+    }
+  };
 
   useEffect(() => {
     if (router.query.id) {
-      getUserDetails()
+      getUserDetails();
+      getUserProduct();
     } else {
-      router.push('/')
+      router.push("/");
     }
   }, [router.query.id]);
-  
 
   return (
     <>
+      <ToastContainer position="top-right" autoClose={5000} hideProgressBar={false} newestOnTop={false} closeOnClick rtl={false} pauseOnFocusLoss draggable pauseOnHover />
       <MainLayout>
         <section className="flex items-center min-h-screen font-poppins">
           <div className="w-full mt-20 2lg:mt-0">
@@ -117,7 +166,7 @@ export default function profile() {
                   <h2 className="p-4 text-gray-800 font-bold text-3xl">Profil</h2>
                 </div>
                 <div className="flex p-2 items-center justify-center">
-                  <img className="w-[150px] h-[150px] object-cover rounded-full" src={image}/>
+                  <img className="w-[150px] h-[150px] object-cover rounded-full" src={image} />
                   {/* <Image src={image} alt="heroPhotoProfile" width={150} height={150} /> */}
                 </div>
                 {/* <div>
@@ -125,11 +174,11 @@ export default function profile() {
                 </div> */}
                 <div className="flex items-center justify-center mt-2">
                   <label className="flex py-1 px-2 flex-col items-center rounded tracking-wide border cursor-pointer hover:bg-fuchsia-500 hover:text-white">
-                  <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" viewBox="0 0 20 20" fill="currentColor">
-                    <path fill-rule="evenodd" d="M4 5a2 2 0 00-2 2v8a2 2 0 002 2h12a2 2 0 002-2V7a2 2 0 00-2-2h-1.586a1 1 0 01-.707-.293l-1.121-1.121A2 2 0 0011.172 3H8.828a2 2 0 00-1.414.586L6.293 4.707A1 1 0 015.586 5H4zm6 9a3 3 0 100-6 3 3 0 000 6z" clip-rule="evenodd" />
-                  </svg>
-                      <span className="text-xs leading-none">Pilih Foto</span>
-                      <input onChange={onFileChange} type='file' className="hidden" />
+                    <svg xmlns="http://www.w3.org/2000/svg" className="h-5 w-5" viewBox="0 0 20 20" fill="currentColor">
+                      <path fillRule="evenodd" d="M4 5a2 2 0 00-2 2v8a2 2 0 002 2h12a2 2 0 002-2V7a2 2 0 00-2-2h-1.586a1 1 0 01-.707-.293l-1.121-1.121A2 2 0 0011.172 3H8.828a2 2 0 00-1.414.586L6.293 4.707A1 1 0 015.586 5H4zm6 9a3 3 0 100-6 3 3 0 000 6z" clipRule="evenodd" />
+                    </svg>
+                    <span className="text-xs leading-none">Pilih Foto</span>
+                    <input onChange={onFileChange} type="file" className="hidden" />
                   </label>
                 </div>
               </figure>
@@ -144,17 +193,23 @@ export default function profile() {
                       <tr>
                         <td className="font-semibold p-2 text-gray-800">Nama Lengkap</td>
                         <td className="text-xs p-2 text-gray-500">
-                          <input onChange={(e) => {
-                            setDetailUser({...detailUser, nama_lengkap : e.target.value})
-                          }} value={detailUser.nama_lengkap} />
+                          <input
+                            onChange={(e) => {
+                              setDetailUser({ ...detailUser, nama_lengkap: e.target.value });
+                            }}
+                            value={detailUser.nama_lengkap}
+                          />
                         </td>
                       </tr>
                       <tr>
                         <td className="font-semibold p-2 text-gray-800">No HP</td>
                         <td className="text-xs p-2 text-gray-500">
-                        <input onChange={(e) => {
-                            setDetailUser({...detailUser, no_hp : e.target.value})
-                          }} value={`+${detailUser.no_hp}`} />
+                          <input
+                            onChange={(e) => {
+                              setDetailUser({ ...detailUser, no_hp: e.target.value });
+                            }}
+                            value={`+${detailUser.no_hp}`}
+                          />
                         </td>
                       </tr>
                       <tr>
@@ -163,19 +218,46 @@ export default function profile() {
                       </tr>
                       <tr>
                         <td className="font-semibold p-2 text-gray-800">Alamat</td>
-                        <td className="text-xs p-2 text-gray-500"><input onChange={(e) => {
-                            setDetailUser({...detailUser, alamat : e.target.value})
-                          }} value={detailUser.alamat} /></td>
+                        <td className="text-xs p-2 text-gray-500">
+                          <input
+                            onChange={(e) => {
+                              setDetailUser({ ...detailUser, alamat: e.target.value });
+                            }}
+                            value={detailUser.alamat}
+                          />
+                        </td>
+                      </tr>
+                      <tr>
+                        <td className="font-semibold p-2 text-gray-800">Password</td>
+                        <td className="text-xs p-2 text-gray-500">
+                          <input
+                            type={isPasswordShow ? "text" : "password"}
+                            onChange={(e) => {
+                              setDetailUser({ ...detailUser, password: e.target.value });
+                            }}
+                            value={detailUser.password}
+                          />
+                        </td>
+
+                        <button
+                          onClick={() => {
+                            setIsPasswordShow(!isPasswordShow);
+                          }}
+                        >
+                          Show Password
+                        </button>
                       </tr>
                     </tbody>
                   </table>
                 </div>
-              <div className="md:w-6/12 flex items-center justify-center mt-4 gap-x-6">
-                <Link href={`/user/${router.query.id}/add-product`}>
-                  <button className='w-28 h-8 text-xs rounded text-slate-50 bg-fuchsia-600 hover:bg-fuchsia-500 shadow hover:shadow-fuchsia-500/50'>Tambah Produk</button>
-                </Link>
-                <button onClick={updateUser} className='w-24 h-8 text-xs rounded text-slate-50 bg-fuchsia-600 hover:bg-fuchsia-500 shadow hover:shadow-fuchsia-500/50'>Simpan Profil</button>
-              </div>
+                <div className="md:w-6/12 flex items-center justify-center mt-4 gap-x-6">
+                  <Link href={`/user/${router.query.id}/add-product`}>
+                    <button className="w-28 h-8 text-xs rounded text-slate-50 bg-fuchsia-600 hover:bg-fuchsia-500 shadow hover:shadow-fuchsia-500/50">Tambah Produk</button>
+                  </Link>
+                  <button onClick={updateUser} className="w-24 h-8 text-xs rounded text-slate-50 bg-fuchsia-600 hover:bg-fuchsia-500 shadow hover:shadow-fuchsia-500/50">
+                    Simpan Profil
+                  </button>
+                </div>
               </div>
             </div>
           </div>
@@ -188,28 +270,19 @@ export default function profile() {
             </div>
 
             {/* Card */}
-            <div className="pb-10">
-              <Slider {...settings}>
-                <div className="p-2">
-                  <Card />
-                </div>
-                <div className="p-2">
-                  <Card />
-                </div>
-                <div className="p-2">
-                  <Card />
-                </div>
-                <div className="p-2">
-                  <Card />
-                </div>
-                <div className="p-2">
-                  <Card />
-                </div>
-                <div className="p-2">
-                  <Card />
-                </div>
-              </Slider>
-            </div>
+            {userProducts.length ? (
+              <div className="pb-10">
+                <Slider {...settings}>
+                  {userProducts?.map((prod) => (
+                    <div key={prod._id} className="p-2">
+                      <Card prodId={prod._id} title={prod.title} createdAt={prod.createdAt} price={prod.price} author={prod.author ? prod.author.nama_lengkap : "Anonimous"} img={`${baseURL.defaults.baseURL}/${prod.images[0].data}`} />
+                    </div>
+                  ))}
+                </Slider>
+              </div>
+            ) : (
+              <h1>Anda Tidak Punya product asu</h1>
+            )}
             {/* Card */}
           </div>
         </section>
