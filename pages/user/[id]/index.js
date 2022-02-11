@@ -22,7 +22,7 @@ export default function profile() {
     nik: "",
     email: "",
     nama_lengkap: "",
-    no_hp: 0,
+    no_hp: "",
     alamat: "",
     password: "",
   });
@@ -266,7 +266,7 @@ export default function profile() {
         <section className="font-poppins">
           <div className="text-gray-800">
             <div className="text-center">
-              <h2 className="p-4 font-bold text-3xl">Produk</h2>
+              <h2 className="p-4 font-bold text-3xl">Produk Anda</h2>
             </div>
 
             {/* Card */}
