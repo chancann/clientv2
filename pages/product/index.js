@@ -67,8 +67,8 @@ export default function product() {
           <div className="w-full relative">
             <div className='flex justify-end'>
               <div className=''>
-                <button onClick={() => { setIsOpen(!isOpen) }} type="button" className="p-2 inline-flex items-center hover:bg-gray-50 focus:outline-none" id="menu-button" aria-expanded="true" aria-haspopup="true">
-                  Kategori
+                <button onClick={() => { setIsOpen(!isOpen) }} type="button" className="p-2 text-sm inline-flex items-center hover:bg-gray-50 focus:outline-none" id="menu-button" aria-expanded="true" aria-haspopup="true">
+                  Pilih Kategori
                   <svg className="-mr-1 ml-2 h-5 w-5" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor" aria-hidden="true">
                     <path fillRule="evenodd" d="M5.293 7.293a1 1 0 011.414 0L10 10.586l3.293-3.293a1 1 0 111.414 1.414l-4 4a1 1 0 01-1.414 0l-4-4a1 1 0 010-1.414z" clipRule="evenodd" />
                   </svg>
@@ -99,7 +99,7 @@ export default function product() {
             </div>
           </div>
         </div>
-            <div className="grid grid-cols-4 gap-x-4">
+            <div className="grid grid-cols-1 2sm:grid-cols-2 md:grid-cols-3 2lg:grid-cols-4 gap-4">
               {products.map((prod) => (
                 <Card prodId={prod._id} key={prod._id} title={prod.title} createdAt={prod.createdAt} price={prod.price} author={prod.author ? prod.author.nama_lengkap : "Anonimous"} img={`${baseURL.defaults.baseURL}/${prod.images[0].data}`} />
               ))}
