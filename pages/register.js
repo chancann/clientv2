@@ -22,7 +22,7 @@ export default function register() {
     // console.log(data);
     // e.preventDefault();
     try {
-      const registerRes = await baseURL.post("/api/user/add", { ...data, no_hp: parseInt(`${62}${data.no_hp.slice(1, -1)}`) });
+      const registerRes = await baseURL.post("/api/user/add", { ...data, no_hp: parseInt(`${62}${data.no_hp.slice(1)}`) });
       // console.log(response);
       if (registerRes.data.status === 200) {
         const userData = {
