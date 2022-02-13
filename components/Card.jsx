@@ -19,7 +19,7 @@ export default function Card({ title, createdAt, price, author, img, prodId }) {
         <h3 className="font-medium text-xs text-center mb-1">{author}</h3>
         <h4 className="font-semibold text-xs text-center text-red-400 mb-3">{toIdr(price)}</h4>
         <div className="flex items-center justify-around p-2">
-          <h5 className="text-xs tracking-tighter">{moment(createdAt).locale("id").format('Do MMMM YYYY')}</h5>
+          <h5 className="text-xs tracking-tighter">{moment(createdAt).locale("id").fromNow()}</h5>
           <p className="text-xl font-thin">|</p>
           <Link href="/detail">
             <Link href={`/product/${prodId}`} className="inline-flex items-center text-xs font-light cursor-pointer">

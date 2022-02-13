@@ -5,6 +5,8 @@ import heroProduct from "../../public/heroProduct.jpg";
 import { useRouter } from "next/router";
 import baseURL from "../../api/baseURL";
 import Slider from "react-slick";
+import moment from "moment";
+import 'moment/locale/id'  
 
 export default function detail() {
   const settings = {
@@ -82,6 +84,7 @@ export default function detail() {
               <h5 className="mb-2 text-xs font-medium">{author.nama_lengkap}</h5>
               <h4 className="mb-2 font-medium">{author.alamat}</h4>
               <h6 className="mb-2 text-xs">{details.description}</h6>
+              <h5 className="mb-2 text-xs tracking-tighter">{moment(details.createdAt).locale('id').fromNow()}</h5>
               <h3 className="mb-2 text-sm font-medium">
                 Harga:
                 <p className="text-lg font-semibold text-red-400">{`${formatRupiah(details.price)}`}</p>
