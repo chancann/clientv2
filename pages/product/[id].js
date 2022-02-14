@@ -1,12 +1,13 @@
-import Image from "next/image";
 import { useState, useEffect } from "react";
 import MainLayout from "../../components/layouts/MainLayout";
-import heroProduct from "../../public/heroProduct.jpg";
 import { useRouter } from "next/router";
 import baseURL from "../../api/baseURL";
 import Slider from "react-slick";
 import moment from "moment";
-import 'moment/locale/id'  
+import "moment/locale/id";
+import Cookies from "js-cookie";
+import decode from "jwt-decode";
+import Link from "next/link";
 
 export default function detail() {
   const settings = {
@@ -37,9 +38,11 @@ export default function detail() {
       },
     ],
   };
+
   const router = useRouter();
   const [details, setDetails] = useState({});
   const [author, setAuthor] = useState({});
+  const [isAuthor, setIsAuthor] = useState(false);
 
   const getProductDetails = async () => {
     try {
@@ -49,6 +52,26 @@ export default function detail() {
       if (response.data.status === 200) {
         setDetails(response.data.data);
         setAuthor(response.data.data.author);
+
+        const token = Cookies.get("token");
+        const user = decode(token);
+
+        if (user._id === response.data.data.author._id) {
+          setIsAuthor(true);
+        }
+      }
+    } catch (error) {
+      console.log(error);
+    }
+  };
+
+  const deleteProduct = async () => {
+    try {
+      const response = await baseURL.delete(`api/product/${router.query.id}`);
+      // console.log(response);
+
+      if (response.data.status === 200) {
+        router.push(`/user/${author._id}`);
       }
     } catch (error) {
       console.log(error);
@@ -60,10 +83,8 @@ export default function detail() {
   }, [router]);
 
   const formatRupiah = (money) => {
-    return new Intl.NumberFormat('id-ID',
-      { style: 'currency', currency: 'IDR', minimumFractionDigits: 0 }
-    ).format(money);
-  }
+    return new Intl.NumberFormat("id-ID", { style: "currency", currency: "IDR", minimumFractionDigits: 0 }).format(money);
+  };
   return (
     <>
       <MainLayout>
@@ -84,16 +105,26 @@ export default function detail() {
               <h5 className="mb-2 text-xs font-medium">{author.nama_lengkap}</h5>
               <h4 className="mb-2 font-medium">{author.alamat}</h4>
               <h6 className="mb-2 text-xs">{details.description}</h6>
-              <h5 className="mb-2 text-xs tracking-tighter">{moment(details.createdAt).locale('id').fromNow()}</h5>
+              <h5 className="mb-2 text-xs tracking-tighter">{moment(details.createdAt).locale("id").fromNow()}</h5>
               <h3 className="mb-2 text-sm font-medium">
                 Harga:
                 <p className="text-lg font-semibold text-red-400">{`${formatRupiah(details.price)}`}</p>
               </h3>
               <button className="w-52 h-8 text-xs rounded text-slate-50 bg-fuchsia-600 hover:bg-fuchsia-500 shadow hover:shadow-fuchsia-500/50">
-                <a target="_blank" href={`https://api.whatsapp.com/send?phone=${author.no_hp}&text=Hallo+Bisa+saya+pesan+${details.title}`} >
+                <a target="_blank" href={`https://api.whatsapp.com/send?phone=${author.no_hp}&text=Hallo+Bisa+saya+pesan+${details.title}`}>
                   Hubungi Penjual
                 </a>
               </button>
+              {isAuthor && (
+                <Link href={`/user/${author._id}/update/${router.query.id}`} className="w-52 h-8 text-xs rounded text-slate-50 bg-fuchsia-600 hover:bg-fuchsia-500 shadow hover:shadow-fuchsia-500/50">
+                  Ubah
+                </Link>
+              )}
+              {isAuthor && (
+                <button onClick={deleteProduct} className="w-52 h-8 text-xs rounded text-slate-50 bg-fuchsia-600 hover:bg-fuchsia-500 shadow hover:shadow-fuchsia-500/50">
+                  Hapus
+                </button>
+              )}
             </div>
           </div>
         </section>

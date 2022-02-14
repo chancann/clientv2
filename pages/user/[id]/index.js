@@ -275,7 +275,7 @@ export default function profile() {
                 <Slider {...settings}>
                   {userProducts?.map((prod) => (
                     <div key={prod._id} className="p-2">
-                      <Card prodId={prod._id} title={prod.title} createdAt={prod.createdAt} price={prod.price} author={prod.author ? prod.author.nama_lengkap : "Anonimous"} img={`${baseURL.defaults.baseURL}/${prod.images[0].data}`} />
+                      <Card prodId={prod._id} title={prod.title} createdAt={prod.createdAt} price={prod.price} author={prod.author ? prod.author.nama_lengkap : "Anonimous"} img={prod.images.length ? `${baseURL.defaults.baseURL}/${prod.images[0].data}` : ""} />
                     </div>
                   ))}
                 </Slider>

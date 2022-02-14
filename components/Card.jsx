@@ -21,16 +21,14 @@ export default function Card({ title, createdAt, price, author, img, prodId }) {
         <div className="flex items-center justify-around p-2">
           <h5 className="text-xs tracking-tighter">{moment(createdAt).locale("id").fromNow()}</h5>
           <p className="text-xl font-thin">|</p>
-          <Link href="/detail">
-            <Link href={`/product/${prodId}`} className="inline-flex items-center text-xs font-light cursor-pointer">
-              <div className="flex items-center">
-                <span className="text-[12px] cursor-pointer">Detail</span>
-                <svg className="w-3 h-3 ml-2 cursor-pointer" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={1} fill="none" strokeLinecap="round" strokeLinejoin="round">
-                  <path d="M5 12h14" />
-                  <path d="M12 5l7 7-7 7" />
-                </svg>
-              </div>
-            </Link>
+          <Link href={`/product/${prodId}`} className="inline-flex items-center text-xs font-light cursor-pointer">
+            <div className="flex items-center">
+              <span className="text-[12px] cursor-pointer">Detail</span>
+              <svg className="w-3 h-3 ml-2 cursor-pointer" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={1} fill="none" strokeLinecap="round" strokeLinejoin="round">
+                <path d="M5 12h14" />
+                <path d="M12 5l7 7-7 7" />
+              </svg>
+            </div>
           </Link>
         </div>
       </div>
