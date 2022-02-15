@@ -59,7 +59,7 @@ export default function login() {
             </figure>
 
             {/* Form */}
-            <div className="md:w-9/12 px-6 py-4 rounded-md bg-gray-50/80">
+            <div className="md:w-9/12 px-6 py-4 rounded-md bg-gray-50/60">
               <div className="m-auto">
                 <div>
                   <h2 className="text-center text-sm font-bold tracking-wide text-gray-800">
@@ -81,7 +81,7 @@ export default function login() {
                         })}
                         // onChange={(e) => {setForm({...form, email: e.target.value})}}
                         type="email"
-                        className="form-input peer mt-1 block w-full text-sm rounded-md border-gray-300 shadow-sm"
+                        className="form-input peer mt-1 block w-full text-sm rounded-md border-none shadow"
                         placeholder="pojokumkm@contoh.com"
                       />
                       {errors.email && <p className="px-2 pt-1 text-xs font-medium text-red-500">{errors.email.message}</p>}
@@ -101,7 +101,7 @@ export default function login() {
                           },
                         })}
                         type="password"
-                        className="form-input mt-1 block w-full text-sm rounded-md border-gray-300 shadow-sm"
+                        className="form-input mt-1 block w-full text-sm rounded-md border-none shadow"
                         placeholder="Kata Sandi"
                       />
                       {errors.password && <p className="px-2 pt-1 text-xs font-medium text-red-500">{errors.password.message}</p>}

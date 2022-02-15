@@ -82,7 +82,7 @@ export default function register() {
             </figure>
 
             {/* Form */}
-            <div className="w-full mx-auto px-6 py-4 rounded-md bg-gray-50/80">
+            <div className="w-full mx-auto px-6 py-4 rounded-md bg-gray-50/60">
               <form onSubmit={handleSubmit(onSubmit)}>
                 <div>
                   <h2 className="text-center text-sm font-bold tracking-wide text-gray-800">
@@ -115,7 +115,7 @@ export default function register() {
                           },
                         })}
                         type="text"
-                        className="form-input mt-1 block w-full text-sm rounded-md border-gray-300 shadow-sm"
+                        className="form-input mt-1 block w-full text-sm rounded-md border-none shadow-sm"
                         placeholder="Nomor NIK"
                       />
                       {errors.nik && <p className="px-2 pt-1 text-xs font-medium text-red-500">{errors.nik.message}</p>}
@@ -138,7 +138,7 @@ export default function register() {
                           },
                         })}
                         type="text"
-                        className="form-input mt-1 block w-full text-sm rounded-md border-gray-300 shadow-sm"
+                        className="form-input mt-1 block w-full text-sm rounded-md border-none shadow-sm"
                         placeholder="Nama Lengkap"
                       />
                       {errors.nama_lengkap && <p className="px-2 pt-1 text-xs font-medium text-red-500">{errors.nama_lengkap.message}</p>}
@@ -165,7 +165,7 @@ export default function register() {
                           },
                         })}
                         type="text"
-                        className="form-input mt-1 block w-full text-sm rounded-md border-gray-300 shadow-sm"
+                        className="form-input mt-1 block w-full text-sm rounded-md border-none shadow-sm"
                         placeholder="08xxxxxxxxxx"
                       />
                       {errors.no_hp && <p className="px-2 pt-1 text-xs font-medium text-red-500">{errors.no_hp.message}</p>}
@@ -187,7 +187,7 @@ export default function register() {
                           },
                         })}
                         type="email"
-                        className="form-input mt-1 block w-full text-sm rounded-md border-gray-300 shadow-sm"
+                        className="form-input mt-1 block w-full text-sm rounded-md border-none shadow-sm"
                         placeholder="pojokumkm@contoh.com"
                       />
                       {errors.email && <p className="px-2 pt-1 text-xs font-medium text-red-500">{errors.email.message}</p>}
@@ -206,7 +206,7 @@ export default function register() {
                           },
                         })}
                         type="password"
-                        className="form-input mt-1 block w-full text-sm rounded-md border-gray-300 shadow-sm"
+                        className="form-input mt-1 block w-full text-sm rounded-md border-none shadow-sm"
                         placeholder="Kata Sandi"
                       />
                       {errors.password && <p className="px-2 pt-1 text-xs font-medium text-red-500">{errors.password.message}</p>}
@@ -220,7 +220,7 @@ export default function register() {
                             message: "Pilih jenis kelamin!",
                           },
                         })}
-                        className="form-select mt-1 block w-full text-sm rounded-md border-gray-300 shadow-sm"
+                        className="form-select mt-1 block w-full text-sm rounded-md border-none shadow-sm"
                       >
                         <option value="">Pilih Jenis Kelamin</option>
                         <option value="Laki-laki">Laki-laki</option>
@@ -239,7 +239,7 @@ export default function register() {
                         message: "Masukkan alamat!",
                       },
                     })}
-                    className="form-input mt-1 block w-full text-sm rounded-md border-gray-300 shadow-sm"
+                    className="form-input mt-1 block w-full text-sm rounded-md border-none shadow-sm"
                     placeholder="Jl. Raya Mauk No.89, Sepatan, Tangerang, Banten 15520, Indonesia"
                   ></textarea>
                   {errors.alamat && <p className="px-2 pt-1 text-xs font-medium text-red-500">{errors.alamat.message}</p>}
