@@ -21,17 +21,15 @@ export default function login() {
   } = useForm();
 
   const onSubmit = async (data) => {
-    // console.log(data);
     try {
       setIsloading(true);
       const response = await baseURL.post("/api/user/login", data);
       if (response.data.status === 200) {
-        // console.log(doLogin);
         Cookies.set("token", response.data.data.token, { expires: 1 });
         router.push("/");
         setIsloading(false);
       } else {
-        toast.error(response.data.data, {
+        toast.error('Tidak Valid!', {
           position: "top-right",
           autoClose: 5000,
           hideProgressBar: false,
@@ -46,20 +44,6 @@ export default function login() {
       console.log(error);
     }
   };
-
-  // const loginHandler = async (e) => {
-  //   e.preventDefault()
-  //   try {
-  //     const doLogin = await baseURL.post("/api/user/login",form);
-  //     console.log(doLogin);
-  //     if (doLogin.data.status === 200){
-  //       Cookies.set('token', doLogin.data.token, {expires:1})
-  //       router.push('/')
-  //     }
-  //   } catch (error) {
-  //     console.log(error);
-  //   }
-  // }
 
   return (
     <>
@@ -136,7 +120,7 @@ export default function login() {
                     <div className="text-center">
                       {/* <Link href="/"> */}
                       <button type="submit" className="w-52 h-8 mt-6 text-xs rounded text-slate-50 bg-fuchsia-600 hover:bg-fuchsia-500 shadow hover:shadow-fuchsia-500/50">
-                        {isLoading ? "Loading" : "Masuk"}
+                        {isLoading ? "Tunggu..." : "Masuk"}
                       </button>
                       {/* </Link> */}
                     </div>
