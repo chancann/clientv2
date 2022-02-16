@@ -4,12 +4,19 @@ import baseUrl from "../api/baseURL";
 import { useState } from "react";
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
+import { useForm } from "react-hook-form";
+// import register from "./register";
 
 export default function forgotPassword() {
   const [email, setEmail] = useState("");
+  const {
+    register,
+    handleSubmit,
+    formState: { errors },
+  } = useForm();
 
   const forgetPassword = async (e) => {
-    e.preventDefault();
+    // e.preventDefault();
     try {
       const response = await baseUrl.put("/api/user/forget", { email });
       if (response.data.status === 200) {
@@ -51,11 +58,19 @@ export default function forgotPassword() {
                 </h2>
               </div>
 
-              <form onSubmit={forgetPassword}>
+              <form onSubmit={handleSubmit(forgetPassword)}>
                 <div className="py-6">
                   <div className="block text-sm">
                     <label className="px-2 text-gray-800 font-medium">Email</label>
-                    <input value={email} onChange={(e) => setEmail(e.target.value)} type="email" className="form-input mt-1 block w-full text-sm rounded-md border-gray-300 shadow-sm" placeholder="pojokumkm@contoh.com" />
+                    <input
+                    {...register('email', {
+                      required:{
+                        value:true,
+                        message:'Masukkan email!'
+                      }
+                    })}
+                    value={email} onChange={(e) => setEmail(e.target.value)} type="email" className="form-input mt-1 block w-full text-sm rounded-md border-gray-300 shadow-sm" placeholder="pojokumkm@contoh.com" />
+                    {errors.email && <p className="px-2 pt-1 text-xs font-medium text-red-500">{errors.email.message}</p>}
                   </div>
 
                   {/* Button */}

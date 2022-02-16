@@ -74,7 +74,7 @@ export default function profile() {
         const response = await baseURL.put(`/api/user/update/${router.query.id}`, formData);
         if (response.data.status === 200) {
           getUserDetails();
-          toast.success("Profile Berhasil Di Update", {
+          toast.success("Profil Berhasil Tersimpan!", {
             position: "top-right",
             autoClose: 5000,
             hideProgressBar: false,
@@ -187,16 +187,16 @@ export default function profile() {
               <div className="md:w-6/12 text-gray-800">
                 <div className="mt-10 2lg:mt-0">
                   <div className="w-full">
-                      <div className="block text-sm">
-                        <label className="px-2 text-gray-800 font-medium">NIK</label>
+                      <div className="flex relative text-sm">
+                        <label className="absolute px-2 text-gray-800 font-medium">NIK</label>
                         <input
                           type="text"
                           className="form-input mt-1 block w-full text-sm rounded-md border-gray-300 shadow-sm"
                           defaultValue={detailUser.nik}
                         />
                       </div>
-                      <div className="block text-sm">
-                        <label className="px-2 text-gray-800 font-medium">Nama</label>
+                      <div className="flex relative text-sm">
+                        <label className="absolute px-2 text-gray-800 font-medium">Nama</label>
                         <input
                           type="text"
                           className="form-input mt-1 block w-full text-sm rounded-md border-gray-300 shadow-sm"
@@ -206,33 +206,33 @@ export default function profile() {
                           defaultValue={detailUser.nama_lengkap}
                         />
                       </div>
-                      <div className="block text-sm">
-                        <label className="px-2 text-gray-800 font-medium">No HP</label>
+                      <div className="flex relative text-sm">
+                        <label className="absolute px-2 text-gray-800 font-medium">No HP</label>
                         <input
                           type="text"
-                          className="form-input mt-1 block w-full text-sm rounded-md border-gray-300 shadow-sm"
+                          className="form-input mt-1 block w-full text-sm border-none rounded-md shadow"
                           onChange={(e) => {
                             setDetailUser({ ...detailUser, no_hp: e.target.value });
                           }}
                           defaultValue={detailUser.no_hp}
                         />
                       </div>
-                      <div className="block text-sm">
-                        <label className="px-2 text-gray-800 font-medium">Email</label>
+                      <div className="flex relative text-sm">
+                        <label className="absolute px-2 text-gray-800 font-medium">Email</label>
                         <input
                           type="email"
-                          className="form-input mt-1 block w-full text-sm rounded-md border-gray-300 shadow-sm"
+                          className="form-input mt-1 block w-full text-sm border-none rounded-md shadow"
                           defaultValue={detailUser.email}
                         />
                       </div>
-                      <div className="block text-sm 2lg:mt-0">
-                        <label className="px-2 text-gray-800 font-medium">Alamat</label>
+                      <div className="flex relative text-sm">
+                        <label className="absolute px-2 text-gray-800 font-medium">Alamat</label>
                         <textarea 
                         onChange={(e) => {
                           setDetailUser({ ...detailUser, alamat: e.target.value });
                         }}
                         defaultValue={detailUser.alamat}
-                        className="form-input mt-1 block w-full text-sm rounded-md border-gray-300 shadow-sm"/>
+                        className="form-input mt-1 block w-full text-sm border-none rounded-md shadow"/>
                       </div>
                       <div className="flex relative text-sm">
                         <label className="px-2 text-gray-800 absolute font-medium">Kata Sandi</label>
@@ -244,7 +244,7 @@ export default function profile() {
                             }}
                           defaultValue={detailUser.password}
                         />
-                        <svg xmlns="http://www.w3.org/2000/svg" onClick={() => {setIsPasswordShow(!isPasswordShow);}} className="absolute h-4 w-4 cursor-pointer" viewBox="0 0 20 20" fill="currentColor">
+                        <svg xmlns="http://www.w3.org/2000/svg" onClick={() => {setIsPasswordShow(!isPasswordShow);}} className="absolute h-4 w-4 cursor-pointer inset-y-0 right-0 flex items-center text-sm leading-5 mt-[14px] mr-2" viewBox="0 0 20 20" fill="currentColor">
                           <path className={!isPasswordShow ? "block" : "hidden"} fillRule="evenodd" d="M3.707 2.293a1 1 0 00-1.414 1.414l14 14a1 1 0 001.414-1.414l-1.473-1.473A10.014 10.014 0 0019.542 10C18.268 5.943 14.478 3 10 3a9.958 9.958 0 00-4.512 1.074l-1.78-1.781zm4.261 4.26l1.514 1.515a2.003 2.003 0 012.45 2.45l1.514 1.514a4 4 0 00-5.478-5.478z" clipRule="evenodd" />
                           <path className={!isPasswordShow ? "block" : "hidden"} d="M12.454 16.697L9.75 13.992a4 4 0 01-3.742-3.741L2.335 6.578A9.98 9.98 0 00.458 10c1.274 4.057 5.065 7 9.542 7 .847 0 1.669-.105 2.454-.303z" />
                           <path className={isPasswordShow ? "block" : "hidden"} d="M10 12a2 2 0 100-4 2 2 0 000 4z" />
@@ -254,7 +254,7 @@ export default function profile() {
                   </div>
                 </div>
 
-                <div className="md:w-6/12 flex items-center justify-center mt-4 gap-x-6">
+                <div className="flex items-center justify-center mt-4 gap-x-6">
                   <Link href={`/user/${router.query.id}/add-product`}>
                     <button className="w-28 h-8 text-xs rounded text-slate-50 bg-fuchsia-600 hover:bg-fuchsia-500 shadow hover:shadow-fuchsia-500/50">Tambah Produk</button>
                   </Link>
