@@ -252,7 +252,7 @@ export default function register() {
                     }
                   })}
                   type="checkbox" className="form-checkbox h-4 w-4 border-gray-50 rounded cursor-pointer shadow"/>
-                  <label className="ml-3 block text-xs text-gray-800 select-none cursor-pointer">Saya menyatakan bahwa data yang diisikan adalah benar dan siap mempertanggungjawabkan apabila ditemukan ketidaksesuaian dalam data tersebut.</label>
+                  <label className="ml-3 block text-xs text-gray-800 select-none cursor-pointer">Saya menyatakan bahwa data yang diisikan adalah benar.</label>
                 </div>
                 <div className="text-center">
                   <button type="submit" className="w-52 h-8 mt-6 text-xs rounded text-slate-50 bg-fuchsia-600 hover:bg-fuchsia-500 shadow hover:shadow-fuchsia-500/50">
