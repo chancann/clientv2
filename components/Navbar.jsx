@@ -76,7 +76,7 @@ export default function Header() {
               <a className="hover:text-fuchsia-500">Produk</a>
             </Link>
             <Link href="/about">
-              <a className="hover:text-fuchsia-500 mb-2">Tentang</a>
+              <a className="hover:text-fuchsia-500 mb-2 md:mb-0">Tentang</a>
             </Link>
           </div>
 

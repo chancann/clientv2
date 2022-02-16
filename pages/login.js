@@ -59,7 +59,7 @@ export default function login() {
             </figure>
 
             {/* Form */}
-            <div className="md:w-9/12 px-6 py-4 rounded-md bg-gray-50/60">
+            <div className="md:w-9/12 px-6 py-4 rounded-md bg-gray-50/70">
               <div className="m-auto">
                 <div>
                   <h2 className="text-center text-sm font-bold tracking-wide text-gray-800">
