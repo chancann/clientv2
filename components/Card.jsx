@@ -9,7 +9,7 @@ export default function Card({ title, createdAt, price, author, img, prodId }) {
   };
 
   return (
-    <div className="bg-white/80 shadow">
+    <div className="mx-2 my-1 bg-white/80 shadow">
       <figure className="p-6 2sm:p-2">
         {/* <Image className="rounded-sm" src={img ? img : ""} alt="heroProduct" /> */}
         <img src={img} className="rounded-sm h-[250px] w-full object-cover" alt="" />

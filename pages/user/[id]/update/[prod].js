@@ -124,7 +124,7 @@ export default function updateProduct() {
                           setForm({ ...form, title: e.target.value });
                         }}
                         type="text"
-                        className="form-input mt-1 block w-full text-sm rounded-md border-gray-300 shadow-sm"
+                        className="form-input mt-1 block w-full text-sm border-none rounded-md shadow"
                         placeholder="Nama Produk"
                       />
                       {errors.title && <p className="px-2 pt-1 text-xs font-medium text-red-500">{errors.title.message}</p>}
@@ -143,7 +143,7 @@ export default function updateProduct() {
                           setForm({ ...form, price: e.target.value });
                         }}
                         type="text"
-                        className="form-input mt-1 block w-full text-sm rounded-md border-gray-300 shadow-sm"
+                        className="form-input mt-1 block w-full text-sm border-none rounded-md shadow"
                         placeholder="Harga"
                       />
                       {errors.price && <p className="px-2 pt-1 text-xs font-medium text-red-500">{errors.price.message}</p>}
@@ -161,7 +161,7 @@ export default function updateProduct() {
                         onChange={(e) => {
                           setForm({ ...form, description: e.target.value });
                         }}
-                        className="form-input mt-1 block w-full text-sm rounded-md border-gray-300 shadow-sm"
+                        className="form-input mt-1 block w-full text-sm border-none rounded-md shadow"
                         placeholder="Deskripsi"
                       ></textarea>
                       {errors.description && <p className="px-2 pt-1 text-xs font-medium text-red-500">{errors.description.message}</p>}
@@ -182,7 +182,7 @@ export default function updateProduct() {
                         onChange={(e) => {
                           setForm({ ...form, category: e.target.value });
                         }}
-                        className="form-select mt-1 block w-full text-sm rounded-md border-gray-300 shadow-sm"
+                        className="form-select mt-1 block w-full text-sm border-none rounded-md shadow"
                       >
                         <option value="">Pilih Kategori</option>
                         <option value="Makanan">Makanan</option>
@@ -225,7 +225,7 @@ export default function updateProduct() {
                   </div>
                 </div>
                 <div className="text-center">
-                  <button className="w-52 h-8 mt-6 text-xs rounded text-slate-50 bg-fuchsia-600 hover:bg-fuchsia-500 shadow hover:shadow-fuchsia-500/50">Tambahkan Produk</button>
+                  <button className="w-52 h-8 mt-6 text-xs rounded text-slate-50 bg-fuchsia-600 hover:bg-fuchsia-500 shadow hover:shadow-fuchsia-500/50">Ubah Produk</button>
                 </div>
               </form>
             </div>

@@ -8,9 +8,11 @@ import "slick-carousel/slick/slick-theme.css";
 import { useRouter } from "next/router";
 import baseURL from "../../../api/baseURL";
 import Link from "next/link";
+import heroEmptyProduct from "../../../public/heroEmptyProduct.svg"
 import CryptoJS from "crypto-js";
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
+import moment from "moment";
 
 export default function profile() {
   const router = useRouter();
@@ -188,7 +190,7 @@ export default function profile() {
                 <div className="mt-10 2lg:mt-0">
                   <div className="w-full">
                       <div className="relative text-sm">
-                        <label className="absolute px-2 text-gray-800 font-medium">NIK</label>
+                        <label className="absolute px-2 text-gray-800 font-medium"></label>
                         <input
                           type="text"
                           className="form-input mt-1 block w-full text-sm border-none rounded-md shadow"
@@ -196,7 +198,7 @@ export default function profile() {
                         />
                       </div>
                       <div className="relative text-sm">
-                        <label className="absolute px-2 text-gray-800 font-medium">Nama</label>
+                        <label className="absolute px-2 text-gray-800 font-medium"></label>
                         <input
                           type="text"
                           className="form-input mt-1 block w-full text-sm border-none rounded-md shadow"
@@ -207,7 +209,7 @@ export default function profile() {
                         />
                       </div>
                       <div className="relative text-sm">
-                        <label className="absolute px-2 text-gray-800 font-medium">No HP</label>
+                        <label className="absolute px-2 text-gray-800 font-medium"></label>
                         <input
                           type="text"
                           className="form-input mt-1 block w-full text-sm border-none rounded-md shadow"
@@ -218,7 +220,7 @@ export default function profile() {
                         />
                       </div>
                       <div className="relative text-sm">
-                        <label className="absolute px-2 text-gray-800 font-medium">Email</label>
+                        <label className="absolute px-2 text-gray-800 font-medium"></label>
                         <input
                           type="email"
                           className="form-input mt-1 block w-full text-sm border-none rounded-md shadow"
@@ -226,7 +228,7 @@ export default function profile() {
                         />
                       </div>
                       <div className="relative text-sm">
-                        <label className="absolute px-2 text-gray-800 font-medium">Alamat</label>
+                        <label className="absolute px-2 text-gray-800 font-medium"></label>
                         <textarea 
                         onChange={(e) => {
                           setDetailUser({ ...detailUser, alamat: e.target.value });
@@ -235,7 +237,7 @@ export default function profile() {
                         className="form-input mt-1 block w-full text-sm border-none rounded-md shadow"/>
                       </div>
                       <div className="relative text-sm">
-                        <label className="px-2 text-gray-800 absolute font-medium">Kata Sandi</label>
+                        <label className="px-2 text-gray-800 absolute font-medium"></label>
                         <input
                           className="form-input mt-1 block w-full text-sm border-none rounded-md shadow"
                           type={isPasswordShow ? "text" : "password"}
@@ -254,11 +256,11 @@ export default function profile() {
                   </div>
                 </div>
 
-                <div className="flex items-center justify-center mt-4 gap-x-6">
+                <div className="flex items-center justify-center mt-4 gap-x-2">
                   <Link href={`/user/${router.query.id}/add-product`}>
-                    <button className="w-28 h-8 text-xs rounded text-slate-50 bg-fuchsia-600 hover:bg-fuchsia-500 shadow hover:shadow-fuchsia-500/50">Tambah Produk</button>
+                    <button className="w-[110px] right-[105px] h-8 text-xs rounded text-emerald-500 bg-emerald-50/30 hover:bg-emerald-50/80">Tambah Produk</button>
                   </Link>
-                  <button onClick={updateUser} className="w-24 h-8 text-xs rounded text-slate-50 bg-fuchsia-600 hover:bg-fuchsia-500 shadow hover:shadow-fuchsia-500/50">
+                  <button onClick={updateUser} className="w-[110px] right-[105px] h-8 text-xs rounded text-blue-500 bg-blue-50/30 hover:bg-blue-50/80">
                     Simpan Profil
                   </button>
                 </div>
@@ -275,17 +277,19 @@ export default function profile() {
 
             {/* Card */}
             {userProducts.length ? (
-              <div className="pb-10">
+              <div className="my-5">
                 <Slider {...settings}>
                   {userProducts?.map((prod) => (
-                    <div key={prod._id} className="p-2">
-                      <Card prodId={prod._id} title={prod.title} createdAt={prod.createdAt} price={prod.price} author={prod.author ? prod.author.nama_lengkap : "Anonimous"} img={prod.images.length ? `${baseURL.defaults.baseURL}/${prod.images[0].data}` : ""} />
+                    <div key={prod._id}>
+                      <Card prodId={prod._id} title={prod.title} createdAt={moment(prod.createdAt).locale("id")} price={prod.price} author={prod.author ? prod.author.nama_lengkap : "Anonimous"} img={prod.images.length ? `${baseURL.defaults.baseURL}/${prod.images[0].data}` : ""} />
                     </div>
                   ))}
                 </Slider>
               </div>
             ) : (
-              <h1 className="text-center">Anda Belum Menambahkan Produk</h1>
+              <figure className="flex justify-center">
+                <Image src={heroEmptyProduct} alt="heroEmptyProduct" width={350} height={350}/>
+              </figure>
             )}
             {/* Card */}
           </div>

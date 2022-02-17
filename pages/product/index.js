@@ -5,6 +5,8 @@ import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
 import baseURL from "../../api/baseURL";
 import { useEffect, useState } from "react";
+import moment from "moment";
+import "moment/locale/id";
 
 export default function product() {
   const [isOpen, setIsOpen] = useState(false)
@@ -101,7 +103,7 @@ export default function product() {
         </div>
             <div className="grid grid-cols-1 2sm:grid-cols-2 md:grid-cols-3 2lg:grid-cols-4 gap-4">
               {products.map((prod) => (
-                <Card prodId={prod._id} key={prod._id} title={prod.title} createdAt={prod.createdAt} price={prod.price} author={prod.author ? prod.author.nama_lengkap : "Anonimous"} img={`${baseURL.defaults.baseURL}/${prod.images[0].data}`} />
+                <Card prodId={prod._id} key={prod._id} title={prod.title} createdAt={moment(prod.createdAt).locale("id")} price={prod.price} author={prod.author ? prod.author.nama_lengkap : "Anonimous"} img={`${baseURL.defaults.baseURL}/${prod.images[0].data}`} />
               ))}
             </div>
           </div>

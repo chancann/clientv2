@@ -97,7 +97,7 @@ export default function addProduct() {
                           setForm({ ...form, title: e.target.value });
                         }}
                         type="text"
-                        className="form-input mt-1 block w-full text-sm rounded-md border-gray-300 shadow-sm"
+                        className="form-input mt-1 block w-full text-sm border-none rounded-md shadow"
                         placeholder="Nama Produk"
                       />
                       {errors.title && <p className="px-2 pt-1 text-xs font-medium text-red-500">{errors.title.message}</p>}
@@ -115,7 +115,7 @@ export default function addProduct() {
                           setForm({ ...form, price: e.target.value });
                         }}
                         type="text"
-                        className="form-input mt-1 block w-full text-sm rounded-md border-gray-300 shadow-sm"
+                        className="form-input mt-1 block w-full text-sm border-none rounded-md shadow"
                         placeholder="Harga"
                       />
                       {errors.price && <p className="px-2 pt-1 text-xs font-medium text-red-500">{errors.price.message}</p>}
@@ -132,7 +132,7 @@ export default function addProduct() {
                         onChange={(e) => {
                           setForm({ ...form, description: e.target.value });
                         }}
-                        className="form-input mt-1 block w-full text-sm rounded-md border-gray-300 shadow-sm"
+                        className="form-input mt-1 block w-full text-sm border-none rounded-md shadow"
                         placeholder="Deskripsi"
                       ></textarea>
                       {errors.description && <p className="px-2 pt-1 text-xs font-medium text-red-500">{errors.description.message}</p>}
@@ -152,7 +152,7 @@ export default function addProduct() {
                         onChange={(e) => {
                           setForm({ ...form, category: e.target.value });
                         }}
-                        className="form-select mt-1 block w-full text-sm rounded-md border-gray-300 shadow-sm"
+                        className="form-select mt-1 block w-full text-sm border-none rounded-md shadow"
                       >
                         <option value="">Pilih Kategori</option>
                         <option value="Makanan">Makanan</option>
