@@ -83,7 +83,11 @@ export default function detail() {
   }, [router]);
 
   const formatRupiah = (money) => {
-    return new Intl.NumberFormat("id-ID", { style: "currency", currency: "IDR", minimumFractionDigits: 0 }).format(money);
+    return new Intl.NumberFormat("id-ID", {
+      style: "currency",
+      currency: "IDR",
+      minimumFractionDigits: 0,
+    }).format(money);
   };
   return (
     <>
@@ -101,31 +105,47 @@ export default function detail() {
 
             <div className="flex flex-col md:w-4/5 h-auto md:p-4 text-gray-800">
               <h2 className="mb-2 text-xl font-bold">{details.category}</h2>
-              <h3 className="mb-2 text-lg font-bold tracking-tight text-fuchsia-900/90">{details.title}</h3>
-              <h5 className="mb-2 text-xs font-medium">{author.nama_lengkap}</h5>
+              <h3 className="mb-2 text-lg font-bold tracking-tight text-fuchsia-900/90">
+                {details.title}
+              </h3>
+              <h5 className="mb-2 text-xs font-medium">
+                {author.nama_lengkap}
+              </h5>
               <h4 className="mb-2 font-medium">{author.alamat}</h4>
               <h6 className="mb-2 text-xs">{details.description}</h6>
-              <h5 className="mb-2 text-xs tracking-tighter">{moment(details.createdAt).locale("id").fromNow()}</h5>
+              <h5 className="mb-2 text-xs tracking-tighter">
+                {moment(details.createdAt).locale("id").fromNow()}
+              </h5>
               <div>
                 <h2 className="mb-2 text-sm font-medium">
-                Harga:
-                <p className="text-lg font-semibold text-red-400">{`${formatRupiah(details.price)}`}</p>
+                  Harga:
+                  <p className="text-lg font-semibold text-red-400">{`${formatRupiah(
+                    details.price
+                  )}`}</p>
                 </h2>
               </div>
               <div className="relative w-full mb-2">
-              {isAuthor && (
-                <Link href={`/user/${author._id}/update/${router.query.id}`}>
-                  <button className="w-[100px] absolute right-[105px] h-8 text-xs rounded text-blue-500 bg-blue-50/30 hover:bg-blue-50/80">Ubah</button>
-                </Link>
-              )}
-              {isAuthor && (
-                <button onClick={deleteProduct} className="w-[100px] absolute right-0 h-8 text-xs rounded text-rose-500 bg-rose-50/30 hover:bg-rose-50/80">
-                  Hapus
-                </button>
-              )}
+                {isAuthor && (
+                  <Link href={`/user/${author._id}/update/${router.query.id}`}>
+                    <button className="w-[100px] absolute right-[105px] h-8 text-xs rounded text-blue-500 bg-blue-50/30 hover:bg-blue-50/80">
+                      Ubah
+                    </button>
+                  </Link>
+                )}
+                {isAuthor && (
+                  <button
+                    onClick={deleteProduct}
+                    className="w-[100px] absolute right-0 h-8 text-xs rounded text-rose-500 bg-rose-50/30 hover:bg-rose-50/80"
+                  >
+                    Hapus
+                  </button>
+                )}
               </div>
               <button className="w-52 h-8 text-xs rounded text-slate-50 bg-fuchsia-600 hover:bg-fuchsia-500 shadow hover:shadow-fuchsia-500/50">
-                <a target="_blank" href={`https://api.whatsapp.com/send?phone=${author.no_hp}&text=Hallo+Bisa+saya+pesan+${details.title}`}>
+                <a
+                  target="_blank"
+                  href={`https://api.whatsapp.com/send?phone=${author.no_hp}&text=Hallo+Bisa+saya+pesan+${details.title}`}
+                >
                   Hubungi Penjual
                 </a>
               </button>

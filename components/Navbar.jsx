@@ -46,7 +46,9 @@ export default function Header() {
         <div className="flex justify-between">
           <div className="w-20 leading-3">
             <Link href="/">
-              <a className="font-extrabold text-fuchsia-600 tracking-wider">POJOK UMKM.</a>
+              <a className="font-extrabold text-fuchsia-600 tracking-wider">
+                POJOK UMKM.
+              </a>
             </Link>
           </div>
 
@@ -57,9 +59,27 @@ export default function Header() {
               }}
               className="focus:outline-none block md:hidden text-fuchsia-600"
             >
-              <svg xmlns="http://www.w3.org/2000/svg" className="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                <path className={!isOpen ? "block" : "hidden"} strokeLinecap="round" strokeLinejoin="round" strokeWidth={2.5} d="M4 6h16M4 12h16m-7 6h7" />
-                <path className={isOpen ? "block" : "hidden"} strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M6 18L18 6M6 6l12 12" />
+              <svg
+                xmlns="http://www.w3.org/2000/svg"
+                className="h-6 w-6"
+                fill="none"
+                viewBox="0 0 24 24"
+                stroke="currentColor"
+              >
+                <path
+                  className={!isOpen ? "block" : "hidden"}
+                  strokeLinecap="round"
+                  strokeLinejoin="round"
+                  strokeWidth={2.5}
+                  d="M4 6h16M4 12h16m-7 6h7"
+                />
+                <path
+                  className={isOpen ? "block" : "hidden"}
+                  strokeLinecap="round"
+                  strokeLinejoin="round"
+                  strokeWidth={2}
+                  d="M6 18L18 6M6 6l12 12"
+                />
               </svg>
             </button>
           </div>
@@ -67,7 +87,11 @@ export default function Header() {
         {/* Logo & Hamburger */}
 
         {/* Nav & Button */}
-        <nav className={`${isOpen ? "block" : "hidden"} w-full md:flex flex-col md:flex-row md:items-center justify-between text-center`}>
+        <nav
+          className={`${
+            isOpen ? "block" : "hidden"
+          } w-full md:flex flex-col md:flex-row md:items-center justify-between text-center`}
+        >
           <div className="flex flex-col text-sm text-gray-800 font-medium gap-6 md:flex-row">
             <Link href="/">
               <a className="hover:text-fuchsia-500">Beranda</a>
@@ -85,24 +109,51 @@ export default function Header() {
               <Link href={`/user/${user._id}`}>
                 <button className="flex mt-4 md:mt-0 items-center hover:text-fuchsia-500">
                   <figure className="">
-                    <svg xmlns="http://www.w3.org/2000/svg" className="h-5 w-5" viewBox="0 0 20 20" fill="currentColor">
-                      <path fillRule="evenodd" d="M18 10a8 8 0 11-16 0 8 8 0 0116 0zm-6-3a2 2 0 11-4 0 2 2 0 014 0zm-2 4a5 5 0 00-4.546 2.916A5.986 5.986 0 0010 16a5.986 5.986 0 004.546-2.084A5 5 0 0010 11z" clipRule="evenodd" />
+                    <svg
+                      xmlns="http://www.w3.org/2000/svg"
+                      className="h-5 w-5"
+                      viewBox="0 0 20 20"
+                      fill="currentColor"
+                    >
+                      <path
+                        fillRule="evenodd"
+                        d="M18 10a8 8 0 11-16 0 8 8 0 0116 0zm-6-3a2 2 0 11-4 0 2 2 0 014 0zm-2 4a5 5 0 00-4.546 2.916A5.986 5.986 0 0010 16a5.986 5.986 0 004.546-2.084A5 5 0 0010 11z"
+                        clipRule="evenodd"
+                      />
                     </svg>
                   </figure>
-                  <div className="mx-1 text-xs tracking-tight">{user ? user.nama : ""}</div>
+                  <div className="mx-1 text-xs tracking-tight">
+                    {user ? user.nama : ""}
+                  </div>
                 </button>
               </Link>
               <div>
-                <button onClick={logoutHandler} type="button" className={`w-24 h-8 mt-4 md:mt-0 text-xs rounded text-slate-50 bg-fuchsia-600 hover:bg-fuchsia-500 shadow hover:shadow-fuchsia-500/50`}>
+                <button
+                  onClick={logoutHandler}
+                  type="button"
+                  className={`w-24 h-8 mt-4 md:mt-0 text-xs rounded text-slate-50 bg-fuchsia-600 hover:bg-fuchsia-500 shadow hover:shadow-fuchsia-500/50`}
+                >
                   Keluar
                 </button>
-                <ToastContainer position="top-right" autoClose={5000} hideProgressBar={false} newestOnTop={false} closeOnClick rtl={false} pauseOnFocusLoss draggable pauseOnHover />
+                <ToastContainer
+                  position="top-right"
+                  autoClose={5000}
+                  hideProgressBar={false}
+                  newestOnTop={false}
+                  closeOnClick
+                  rtl={false}
+                  pauseOnFocusLoss
+                  draggable
+                  pauseOnHover
+                />
               </div>
             </div>
           ) : (
             <div className="mt-6 md:mt-0">
               <Link href="/login">
-                <button className="w-24 h-8 text-xs rounded text-slate-50 bg-fuchsia-600 hover:bg-fuchsia-500 shadow hover:shadow-fuchsia-500/50">Masuk</button>
+                <button className="w-24 h-8 text-xs rounded text-slate-50 bg-fuchsia-600 hover:bg-fuchsia-500 shadow hover:shadow-fuchsia-500/50">
+                  Masuk
+                </button>
               </Link>
             </div>
           )}

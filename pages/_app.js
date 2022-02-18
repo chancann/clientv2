@@ -1,16 +1,18 @@
-import Head from 'next/head'
-import { RecoilRoot } from 'recoil'
-import '../styles/globals.css'
-
+import Head from "next/head";
+import { RecoilRoot } from "recoil";
+import "../styles/globals.css";
 
 function MyApp({ Component, pageProps }) {
   return (
     <>
       <Head>
         <title>Katalog Online</title>
-        <link rel="preconnect" href="https://fonts.googleapis.com"/>
-        <link rel="preconnect" href="https://fonts.gstatic.com"/>
-        <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@100;200;300;400;500;600;700;800;900&display=swap" rel="stylesheet"/>
+        <link rel="preconnect" href="https://fonts.googleapis.com" />
+        <link rel="preconnect" href="https://fonts.gstatic.com" />
+        <link
+          href="https://fonts.googleapis.com/css2?family=Poppins:wght@100;200;300;400;500;600;700;800;900&display=swap"
+          rel="stylesheet"
+        />
         {/* <link href="https://fonts.googleapis.com/css2?family=Jost:wght@100;200;300;400;500;600;700;800;900&display=swap" rel="stylesheet"/> */}
         {/* <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@100;200;300;400;500;600;700;800;900&display=swap" rel="stylesheet"/> */}
         {/* <link href="https://fonts.googleapis.com/css2?family=Inter:wght@100;200;300;400;500;600;700;800;900&display=swap" rel="stylesheet"/> */}
@@ -19,7 +21,7 @@ function MyApp({ Component, pageProps }) {
         <Component {...pageProps} />
       </RecoilRoot>
     </>
-  ) 
+  );
 }
 
-export default MyApp
+export default MyApp;
