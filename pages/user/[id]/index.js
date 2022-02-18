@@ -333,13 +333,13 @@ export default function profile() {
 
                 <div className="flex items-center justify-center mt-4 gap-x-2">
                   <Link href={`/user/${router.query.id}/add-product`}>
-                    <button className="w-[110px] right-[105px] h-8 text-xs rounded text-emerald-500 bg-emerald-50/30 hover:bg-emerald-50/80">
+                    <button className="w-[110px] right-[105px] h-8 font-medium text-xs rounded text-emerald-500 bg-emerald-50/30 hover:bg-emerald-50/80">
                       Tambah Produk
                     </button>
                   </Link>
                   <button
                     onClick={updateUser}
-                    className="w-[110px] right-[105px] h-8 text-xs rounded text-blue-500 bg-blue-50/30 hover:bg-blue-50/80"
+                    className="w-[110px] right-[105px] h-8 font-medium text-xs rounded text-blue-500 bg-blue-50/30 hover:bg-blue-50/80"
                   >
                     Simpan Profil
                   </button>

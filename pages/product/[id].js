@@ -127,7 +127,7 @@ export default function detail() {
               <div className="relative w-full mb-2">
                 {isAuthor && (
                   <Link href={`/user/${author._id}/update/${router.query.id}`}>
-                    <button className="w-[100px] absolute right-[105px] h-8 text-xs rounded text-blue-500 bg-blue-50/30 hover:bg-blue-50/80">
+                    <button className="w-[90px] absolute font-medium bottom-[38px] right-[95px] h-8 text-xs rounded text-blue-500 bg-blue-50/30 hover:bg-blue-50/80">
                       Ubah
                     </button>
                   </Link>
@@ -135,20 +135,20 @@ export default function detail() {
                 {isAuthor && (
                   <button
                     onClick={deleteProduct}
-                    className="w-[100px] absolute right-0 h-8 text-xs rounded text-rose-500 bg-rose-50/30 hover:bg-rose-50/80"
+                    className="w-[90px] absolute font-medium bottom-[38px] right-0 h-8 text-xs rounded text-red-500 bg-red-50/30 hover:bg-red-50/80"
                   >
                     Hapus
                   </button>
                 )}
+                <button className="w-52 h-8 text-xs rounded text-slate-50 bg-fuchsia-600 hover:bg-fuchsia-500 shadow hover:shadow-fuchsia-500/50">
+                  <a
+                    target="_blank"
+                    href={`https://api.whatsapp.com/send?phone=${author.no_hp}&text=Hallo+Bisa+saya+pesan+${details.title}`}
+                  >
+                    Hubungi Penjual
+                  </a>
+                </button>
               </div>
-              <button className="w-52 h-8 text-xs rounded text-slate-50 bg-fuchsia-600 hover:bg-fuchsia-500 shadow hover:shadow-fuchsia-500/50">
-                <a
-                  target="_blank"
-                  href={`https://api.whatsapp.com/send?phone=${author.no_hp}&text=Hallo+Bisa+saya+pesan+${details.title}`}
-                >
-                  Hubungi Penjual
-                </a>
-              </button>
             </div>
           </div>
         </section>
