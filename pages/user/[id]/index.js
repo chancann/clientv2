@@ -321,7 +321,7 @@ export default function profile() {
                       />
                     </div>
                     <div className="relative mb-4 text-sm">
-                      <label className="absolute px-2 left-0 top-[6px] flex items-center">
+                      <label className="absolute px-2 left-0 top-[7px] flex items-center">
                         <svg
                           xmlns="http://www.w3.org/2000/svg"
                           className="h-5 w-5"
