@@ -27,9 +27,22 @@ export default function login() {
       const response = await baseURL.post("/api/user/login", data);
       if (response.data.status === 200) {
         // console.log(doLogin);
-        Cookies.set("token", response.data.data.token, { expires: 1 });
-        router.push("/");
-        setIsloading(false);
+        if (response.data.data.is_verified) {
+          Cookies.set("token", response.data.data.token, { expires: 1 });
+          router.push("/");
+          setIsloading(false);
+        } else {
+          // user not verified yet
+          toast.error("Maaf anda belum terverifikasi!", {
+            position: "top-right",
+            autoClose: 5000,
+            hideProgressBar: false,
+            closeOnClick: true,
+            pauseOnHover: true,
+            draggable: true,
+            progress: undefined,
+          });
+        }
       } else {
         toast.error(response.data.data, {
           position: "top-right",

@@ -29,8 +29,17 @@ export default function register() {
           email: data.email,
           password: data.password,
         };
-        // router.push("/");
-        const doLogin = await baseURL.post("/api/user/login", userData);
+        toast.success("Berhasil mendaftar silahkan untuk menunggu verifikasi 1-3 hari kerja", {
+          position: "top-right",
+          autoClose: 5000,
+          hideProgressBar: false,
+          closeOnClick: true,
+          pauseOnHover: true,
+          draggable: true,
+          progress: undefined,
+        });
+        router.push("/");
+        // const doLogin = await baseURL.post("/api/user/login", userData);
         // console.log(doLogin);
         if (doLogin.data.status === 200) {
           Cookies.set("token", doLogin.data.data.token, { expires: 1 });
@@ -43,7 +52,7 @@ export default function register() {
             draggable: true,
             progress: undefined,
           });
-          router.push("/");
+          // router.push("/");
         } else {
           toast.error("Tidak valid!", {
             position: "top-right",
