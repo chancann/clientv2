@@ -55,7 +55,10 @@ export default function register() {
           draggable: true,
           progress: undefined,
         });
-        router.push("/");
+
+        setInterval(() => {
+          router.push("/");
+        }, 3000);
         // router.push("/");
       } else {
         toast.error("Tidak valid!", {
