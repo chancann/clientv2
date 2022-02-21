@@ -86,6 +86,7 @@ export default function register() {
 
   return (
     <>
+      <ToastContainer position="top-right" autoClose={5000} hideProgressBar={false} newestOnTop={false} closeOnClick rtl={false} pauseOnFocusLoss draggable pauseOnHover />
       <MainLayout>
         <section className="flex py-2 min-h-screen font-poppins">
           <div className="w-full flex mt-20 flex-col items-center 2lg:flex-row">
