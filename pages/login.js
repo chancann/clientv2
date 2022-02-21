@@ -42,10 +42,8 @@ export default function login() {
             draggable: true,
             progress: undefined,
           });
+          setIsloading(false);
         }
-        Cookies.set("token", response.data.data.token, { expires: 1 });
-        router.push("/");
-        setIsloading(false);
       } else {
         toast.error("Tidak Valid!", {
           position: "top-right",
