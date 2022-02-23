@@ -57,8 +57,8 @@ export default function register() {
         });
 
         setInterval(() => {
-          router.push("/");
-        }, 3000);
+          window.location = "/";
+        }, 6000);
         // router.push("/");
       } else {
         toast.error("Tidak valid!", {
