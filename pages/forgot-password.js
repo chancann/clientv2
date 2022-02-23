@@ -60,7 +60,7 @@ export default function forgotPassword() {
       <MainLayout>
         <section className="flex m-auto py-10 2lg:py-0 min-h-screen font-poppins">
           <div className="flex w-full 2lg:mt-20">
-            <div className="m-auto bg-gray-50/80 p-6 rounded-md">
+            <div className="m-auto bg-gray-50/70 p-6 rounded-md">
               <div>
                 <h2 className="text-center text-sm font-bold tracking-wide text-gray-800">
                   Selamat Datang di Website
@@ -87,7 +87,7 @@ export default function forgotPassword() {
                       value={email}
                       onChange={(e) => setEmail(e.target.value)}
                       type="email"
-                      className="form-input mt-1 block w-full text-sm rounded-md border-gray-300 shadow-sm"
+                      className="form-input mt-1 block w-full text-sm border-none rounded-md shadow"
                       placeholder="pojokumkm@contoh.com"
                     />
                     {errors.email && (
