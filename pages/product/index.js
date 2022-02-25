@@ -4,17 +4,19 @@ import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
 import baseURL from "../../api/baseURL";
 import { useEffect, useState } from "react";
+import InfiniteScroll from "react-infinite-scroll-component";
 import moment from "moment";
 import "moment/locale/id";
 
 export default function product() {
   const [isOpen, setIsOpen] = useState(false);
+  const [isLoading, setIsLoading] = useState(false);
 
   const [category, setCategory] = useState("");
   const settings = {
     infinite: false,
-    slidesToShow: 5,
-    slidesToScroll: 5,
+    slidesToShow: 4,
+    slidesToScroll: 4,
     responsive: [
       {
         breakpoint: 1024,
@@ -44,11 +46,13 @@ export default function product() {
 
   const getProducts = async () => {
     try {
-      const response = await baseURL.get("api/product");
-
+      setIsLoading(true);
+      const response = await baseURL.get(`api/product`);
+      // console.log(response);
       if (response.data.data.status === 200) {
         setProducts(response.data.data.data);
       }
+      setIsLoading(false);
     } catch (error) {
       console.log(error);
     }
@@ -64,10 +68,12 @@ export default function product() {
 
     const filterCategory = async () => {
       try {
+        setIsLoading(true);
         const response = await baseURL.get(`api/product?category=${category}`);
         if (response.data.data.status === 200) {
           setProducts(response.data.data.data);
         }
+        setIsLoading(false);
       } catch (error) {
         console.log(error);
       }
@@ -96,7 +102,7 @@ export default function product() {
               <div className="w-full relative">
                 <div className="flex justify-end">
                   <select
-                    value={category}
+                    defaultValue={category}
                     onChange={(e) => {
                       setCategory(e.target.value);
                     }}
@@ -213,20 +219,34 @@ export default function product() {
                 </div> */}
               </div>
             </div>
-            <div className="grid grid-cols-1 2sm:grid-cols-2 md:grid-cols-3 2lg:grid-cols-4 gap-4">
-              {products.map((prod) => (
-                <Card
-                  prodId={prod._id}
-                  key={prod._id}
-                  title={prod.title}
-                  createdAt={moment(prod.createdAt).locale("id")}
-                  price={prod.price}
-                  author={prod.author ? prod.author.nama_lengkap : "Anonimous"}
-                  img={`${baseURL.defaults.baseURL}/${prod.images[0].data}`}
-                />
-              ))}
-            </div>
-            <div className="flex justify-center mt-4">
+            {isLoading ? (
+              <div className="flex items-center justify-center">
+                <div
+                  className="spinner-border animate-spin inline-block w-8 h-8 border-4 rounded-full"
+                  role="status"
+                >
+                  <span className="visually-hidden">Loading...</span>
+                </div>
+              </div>
+            ) : (
+              <div className="grid grid-cols-1 2sm:grid-cols-2 md:grid-cols-3 2lg:grid-cols-4 gap-4">
+                {products.map((prod) => (
+                  <Card
+                    prodId={prod._id}
+                    key={prod._id}
+                    title={prod.title}
+                    createdAt={moment(prod.createdAt).locale("id")}
+                    price={prod.price}
+                    author={
+                      prod.author ? prod.author.nama_lengkap : "Anonimous"
+                    }
+                    img={`${baseURL.defaults.baseURL}/${prod.images[0].data}`}
+                  />
+                ))}
+              </div>
+            )}
+
+            {/* <div className="flex justify-center mt-4">
               <nav>
                 <ul className="flex list-style-none">
                   <li className="page-item">
@@ -273,10 +293,18 @@ export default function product() {
                   </li>
                 </ul>
               </nav>
-            </div>
+            </div> */}
           </div>
         </section>
       </MainLayout>
     </>
   );
 }
+
+// export async function getServerSideProps(context) {
+//   const responseUser = await baseURL.get(`/api/produc?_limit=8`)
+//     console.log(responseUser);
+//   return {
+//     props: {product}, // will be passed to the page component as props
+//   }
+// }
