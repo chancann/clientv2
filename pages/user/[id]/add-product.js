@@ -211,6 +211,7 @@ export default function addProduct() {
                           })}
                           onChange={filesChange}
                           multiple
+                          accept="image/png, image/jpeg, image/jpg"
                           type="file"
                           className="hidden mb-2"
                         />

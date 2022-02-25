@@ -218,6 +218,7 @@ export default function profile() {
                     <input
                       onChange={onFileChange}
                       type="file"
+                      accept="image/png, image/jpg, image/jpeg"
                       className="hidden"
                     />
                   </label>
