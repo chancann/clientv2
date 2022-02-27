@@ -1,19 +1,49 @@
 import { useRouter } from "next/router";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import baseURL from "../api/baseURL";
 
 export default function Modal() {
-  const [showModal, setShowModal] = useState(false);
-  const [author] = useState({});
   const router = useRouter();
+  const [isLoading, setIsloading] = useState(false);
+  const [details, setDetails] = useState({});
+  const [author, setAuthor] = useState({});
+  const [isAuthor, setIsAuthor] = useState(false);
+  const [showModal, setShowModal] = useState(false);
+
+  const getProductDetails = async () => {
+    try {
+      const response = await baseURL.get(`api/product/${router.query.id}`);
+      // console.log(response);
+
+      if (response.data.status === 200) {
+        setDetails(response.data.data);
+        setAuthor(response.data.data.author);
+
+        const token = Cookies.get("token");
+        const user = decode(token);
+
+        if (user._id === response.data.data.author._id) {
+          setIsAuthor(true);
+        }
+      }
+    } catch (error) {
+      console.log(error);
+    }
+  };
+
+  useEffect(() => {
+    getProductDetails();
+  }, [router]);
 
   const deleteProduct = async () => {
     try {
+      setIsloading(true);
       const response = await baseURL.delete(`api/product/${router.query.id}`);
       // console.log(response);
 
       if (response.data.status === 200) {
         router.push(`/user/${author._id}`);
+        setIsloading(false);
       }
     } catch (error) {
       console.log(error);
@@ -36,8 +66,8 @@ export default function Modal() {
               {/*content*/}
               <div className="border-0 rounded-lg shadow-lg relative flex flex-col w-full bg-white outline-none focus:outline-none">
                 {/*header*/}
-                <div className="flex items-start justify-between p-5 border-b border-solid border-blueGray-200 rounded-t">
-                  <h3 className="text-3xl font-semibold">Hapus Produk</h3>
+                <div className="flex items-start justify-between p-5 rounded-t">
+                  <h3 className="text-2xl font-semibold">Hapus Produk</h3>
                   <button
                     className="p-1 ml-auto bg-transparent border-0 text-black opacity-5 float-right text-3xl leading-none font-semibold outline-none focus:outline-none"
                     onClick={() => setShowModal(false)}
@@ -49,27 +79,35 @@ export default function Modal() {
                 </div>
                 {/*body*/}
                 <div className="relative p-6 flex-auto">
-                  <p className="my-4 text-blueGray-500 text-lg leading-relaxed">
+                  <p className="my-4 text-blueGray-500 text-sm leading-relaxed">
                     Anda yakin ingin menghapusnya?
                   </p>
                 </div>
                 {/*footer*/}
-                <div className="flex items-center justify-end p-6 border-t border-solid border-blueGray-200 rounded-b">
+                <div className="flex items-center justify-end p-6 rounded-b">
                   <button
-                    className="text-red-500 background-transparent font-bold uppercase px-6 py-2 text-sm outline-none focus:outline-none mr-1 mb-1 ease-linear transition-all duration-150"
+                    className="w-[90px] uppercase font-bold bottom-[38px] right-0 h-8 text-xs rounded text-red-500 bg-red-50/30 hover:bg-red-50/80"
                     type="button"
                     onClick={() => setShowModal(false)}
                   >
                     Batalkan
                   </button>
                   <button
-                    className="bg-emerald-500 text-white active:bg-emerald-600 font-bold uppercase text-sm px-6 py-3 rounded shadow hover:shadow-lg outline-none focus:outline-none mr-1 mb-1 ease-linear transition-all duration-150"
+                    className="w-[90px] uppercase font-bold bottom-[38px] right-0 h-8 text-xs rounded text-green-500 bg-green-50/30 hover:bg-green-50/80"
                     type="button"
-                    onClick={() => {
-                      setShowModal(deleteProduct);
-                    }}
+                    onClick={deleteProduct}
                   >
-                    Hapus
+                    {isLoading ? (
+                      <div className="flex items-center justify-center space-x-2">
+                        <div
+                          className="spinner-border animate-spin inline-block w-4 h-4 border-1 rounded-full"
+                          role="status"
+                        ></div>
+                        <span className="">Tunggu...</span>
+                      </div>
+                    ) : (
+                      "Hapus"
+                    )}
                   </button>
                 </div>
               </div>
