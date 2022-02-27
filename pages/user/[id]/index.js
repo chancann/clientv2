@@ -16,6 +16,7 @@ import moment from "moment";
 
 export default function profile() {
   const router = useRouter();
+  const [isLoading, setIsloading] = useState(false);
   const [isPasswordShow, setIsPasswordShow] = useState(false);
   const [image, setImage] = useState("");
   const [file, setFile] = useState();
@@ -66,6 +67,7 @@ export default function profile() {
 
   const updateUser = async () => {
     try {
+      setIsloading(true);
       if (file) {
         const formData = new FormData();
         formData.append("image", file);
@@ -89,6 +91,7 @@ export default function profile() {
             progress: undefined,
           });
         }
+        setIsloading(false);
       } else {
         toast.error(response.data.data, {
           position: "top-right",
@@ -99,6 +102,7 @@ export default function profile() {
           draggable: true,
           progress: undefined,
         });
+        setIsloading(false);
       }
       const response = await baseURL.put(
         `/api/user/update/${router.query.id}`,
@@ -410,15 +414,25 @@ export default function profile() {
 
                 <div className="flex items-center justify-center mt-4 gap-x-2">
                   <Link href={`/user/${router.query.id}/add-product`}>
-                    <button className="w-[110px] right-[105px] h-8 font-medium text-xs rounded text-emerald-500 bg-emerald-50/30 hover:bg-emerald-50/80">
+                    <button className="w-[110px] right-[105px] uppercase h-8 font-bold text-xs rounded text-emerald-500 bg-emerald-50/30 hover:bg-emerald-50/80">
                       Tambah Produk
                     </button>
                   </Link>
                   <button
                     onClick={updateUser}
-                    className="w-[110px] right-[105px] h-8 font-medium text-xs rounded text-blue-500 bg-blue-50/30 hover:bg-blue-50/80"
+                    className="w-[110px] right-[105px] uppercase h-8 font-bold text-xs rounded text-blue-500 bg-blue-50/30 hover:bg-blue-50/80"
                   >
-                    Simpan Profil
+                    {isLoading ? (
+                      <div className="flex items-center justify-center space-x-2">
+                        <div
+                          className="spinner-border animate-spin inline-block w-4 h-4 border-1 rounded-full"
+                          role="status"
+                        ></div>
+                        <span className="">Tunggu...</span>
+                      </div>
+                    ) : (
+                      "Simpan Profil"
+                    )}
                   </button>
                 </div>
               </div>

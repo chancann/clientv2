@@ -8,6 +8,7 @@ import "moment/locale/id";
 import Cookies from "js-cookie";
 import decode from "jwt-decode";
 import Link from "next/link";
+import Modal from "../../components/Modal";
 
 export default function detail() {
   const settings = {
@@ -65,19 +66,6 @@ export default function detail() {
     }
   };
 
-  const deleteProduct = async () => {
-    try {
-      const response = await baseURL.delete(`api/product/${router.query.id}`);
-      // console.log(response);
-
-      if (response.data.status === 200) {
-        router.push(`/user/${author._id}`);
-      }
-    } catch (error) {
-      console.log(error);
-    }
-  };
-
   useEffect(() => {
     getProductDetails();
   }, [router]);
@@ -127,18 +115,15 @@ export default function detail() {
               <div className="relative w-full mb-2">
                 {isAuthor && (
                   <Link href={`/user/${author._id}/update/${router.query.id}`}>
-                    <button className="w-[90px] absolute font-medium bottom-[38px] right-[95px] h-8 text-xs rounded text-blue-500 bg-blue-50/30 hover:bg-blue-50/80">
+                    <button className="w-[90px] uppercase absolute font-bold bottom-[38px] right-[95px] h-8 text-xs rounded text-blue-500 bg-blue-50/30 hover:bg-blue-50/80">
                       Ubah
                     </button>
                   </Link>
                 )}
                 {isAuthor && (
-                  <button
-                    onClick={deleteProduct}
-                    className="w-[90px] absolute font-medium bottom-[38px] right-0 h-8 text-xs rounded text-red-500 bg-red-50/30 hover:bg-red-50/80"
-                  >
-                    Hapus
-                  </button>
+                  <>
+                    <Modal></Modal>
+                  </>
                 )}
                 <button className="w-52 h-8 text-xs rounded text-slate-50 bg-fuchsia-600 hover:bg-fuchsia-500 shadow hover:shadow-fuchsia-500/50">
                   <a

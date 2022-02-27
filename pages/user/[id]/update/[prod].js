@@ -245,6 +245,7 @@ export default function updateProduct() {
                           onChange={filesChange}
                           multiple
                           type="file"
+                          accept="image/png, image/jpeg, image/jpg"
                           className="hidden mb-2"
                         />
                         <svg

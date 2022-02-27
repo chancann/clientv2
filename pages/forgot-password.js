@@ -8,6 +8,7 @@ import { useForm } from "react-hook-form";
 // import register from "./register";
 
 export default function forgotPassword() {
+  const [isLoading, setIsloading] = useState(false);
   const [email, setEmail] = useState("");
   const {
     register,
@@ -18,6 +19,7 @@ export default function forgotPassword() {
   const forgetPassword = async (e) => {
     // e.preventDefault();
     try {
+      setIsloading(true);
       const response = await baseUrl.put("/api/user/forget", { email });
       if (response.data.status === 200) {
         toast.success(response.data.data, {
@@ -29,6 +31,7 @@ export default function forgotPassword() {
           draggable: true,
           progress: undefined,
         });
+        setIsloading(false);
       } else {
         toast.error(response.data.data, {
           position: "top-right",
@@ -39,6 +42,7 @@ export default function forgotPassword() {
           draggable: true,
           progress: undefined,
         });
+        setIsloading(false);
       }
     } catch (error) {
       console.log(error);
@@ -103,7 +107,17 @@ export default function forgotPassword() {
                       type="submit"
                       className="w-52 h-8 mt-8 text-xs rounded text-slate-50 bg-fuchsia-600 hover:bg-fuchsia-500 shadow hover:shadow-fuchsia-500/50"
                     >
-                      Kirim Verifikasi
+                      {isLoading ? (
+                        <div className="flex items-center justify-center space-x-2">
+                          <div
+                            className="spinner-border animate-spin inline-block w-4 h-4 border-1 rounded-full"
+                            role="status"
+                          ></div>
+                          <span className="">Tunggu...</span>
+                        </div>
+                      ) : (
+                        "Kirim Verifikasi"
+                      )}
                     </button>
                   </div>
 

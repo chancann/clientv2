@@ -13,6 +13,7 @@ import { useState } from "react";
 export default function register() {
   const router = useRouter();
   const [isPasswordShow, setIsPasswordShow] = useState(false);
+  const [isLoading, setIsloading] = useState(false);
 
   const {
     register,
@@ -24,10 +25,12 @@ export default function register() {
     // console.log(data);
     // e.preventDefault();
     try {
+      setIsloading(true);
       const response = await baseURL.post("/api/user/add", {
         ...data,
         no_hp: parseInt(`${62}${data.no_hp.slice(1)}`),
       });
+      setIsloading(false);
       // console.log(response);
       // const userData = {
       //   email: data.email,
@@ -46,20 +49,24 @@ export default function register() {
       // const doLogin = await baseURL.post("/api/user/login", userData);
       // console.log(response);
       if (response.data.status === 200) {
-        toast.success("Berhasil mendaftar silahkan untuk menunggu verifikasi 1-3 hari kerja", {
-          position: "top-right",
-          autoClose: 5000,
-          hideProgressBar: false,
-          closeOnClick: true,
-          pauseOnHover: true,
-          draggable: true,
-          progress: undefined,
-        });
+        toast.success(
+          "Berhasil mendaftar, Silahkan untuk menunggu verifikasi 1-3 hari kerja",
+          {
+            position: "top-right",
+            autoClose: 5000,
+            hideProgressBar: false,
+            closeOnClick: true,
+            pauseOnHover: true,
+            draggable: true,
+            progress: undefined,
+          }
+        );
 
         setInterval(() => {
           window.location = "/";
         }, 6000);
         // router.push("/");
+        setIsloading(false);
       } else {
         toast.error("Tidak valid!", {
           position: "top-right",
@@ -70,6 +77,7 @@ export default function register() {
           draggable: true,
           progress: undefined,
         });
+        setIsloading(false);
       }
     } catch (error) {
       console.log(error);
@@ -89,12 +97,27 @@ export default function register() {
 
   return (
     <>
-      <ToastContainer position="top-right" autoClose={5000} hideProgressBar={false} newestOnTop={false} closeOnClick rtl={false} pauseOnFocusLoss draggable pauseOnHover />
+      <ToastContainer
+        position="top-right"
+        autoClose={5000}
+        hideProgressBar={false}
+        newestOnTop={false}
+        closeOnClick
+        rtl={false}
+        pauseOnFocusLoss
+        draggable
+        pauseOnHover
+      />
       <MainLayout>
         <section className="flex py-2 min-h-screen font-poppins">
           <div className="w-full flex mt-20 flex-col items-center 2lg:flex-row">
             <figure className="hidden 2lg:inline-block">
-              <Image src={heroRegister} alt="heroRegister" width={650} height={650} />
+              <Image
+                src={heroRegister}
+                alt="heroRegister"
+                width={650}
+                height={650}
+              />
             </figure>
 
             {/* Form */}
@@ -103,14 +126,19 @@ export default function register() {
                 <div>
                   <h2 className="text-center text-sm font-bold tracking-wide text-gray-800">
                     Selamat Bergabung di
-                    <span className="text-lg font-extrabold tracking-wider text-fuchsia-600"> POJOK UMKM. </span>
+                    <span className="text-lg font-extrabold tracking-wider text-fuchsia-600">
+                      {" "}
+                      POJOK UMKM.{" "}
+                    </span>
                   </h2>
                 </div>
 
                 <div className="2lg:flex 2lg:gap-x-8">
                   <div className="w-full py-6">
                     <div className="block text-sm">
-                      <label className="px-2 text-gray-800 font-medium">NIK</label>
+                      <label className="px-2 text-gray-800 font-medium">
+                        NIK
+                      </label>
                       <input
                         {...register("nik", {
                           required: {
@@ -134,10 +162,16 @@ export default function register() {
                         className="form-input mt-1 block w-full text-sm rounded-md border-none shadow"
                         placeholder="Nomor NIK"
                       />
-                      {errors.nik && <p className="px-2 pt-1 text-xs font-medium text-red-500">{errors.nik.message}</p>}
+                      {errors.nik && (
+                        <p className="px-2 pt-1 text-xs font-medium text-red-500">
+                          {errors.nik.message}
+                        </p>
+                      )}
                     </div>
                     <div className="block text-sm mt-5">
-                      <label className="px-2 text-gray-800 font-medium">Nama Lengkap</label>
+                      <label className="px-2 text-gray-800 font-medium">
+                        Nama Lengkap
+                      </label>
                       <input
                         {...register("nama_lengkap", {
                           required: {
@@ -157,10 +191,16 @@ export default function register() {
                         className="form-input mt-1 block w-full text-sm rounded-md border-none shadow"
                         placeholder="Nama Lengkap"
                       />
-                      {errors.nama_lengkap && <p className="px-2 pt-1 text-xs font-medium text-red-500">{errors.nama_lengkap.message}</p>}
+                      {errors.nama_lengkap && (
+                        <p className="px-2 pt-1 text-xs font-medium text-red-500">
+                          {errors.nama_lengkap.message}
+                        </p>
+                      )}
                     </div>
                     <div className="block text-sm mt-5">
-                      <label className="px-2 text-gray-800 font-medium">No HP</label>
+                      <label className="px-2 text-gray-800 font-medium">
+                        No HP
+                      </label>
                       <input
                         {...register("no_hp", {
                           required: {
@@ -184,13 +224,19 @@ export default function register() {
                         className="form-input mt-1 block w-full text-sm rounded-md border-none shadow"
                         placeholder="08xxxxxxxxxx"
                       />
-                      {errors.no_hp && <p className="px-2 pt-1 text-xs font-medium text-red-500">{errors.no_hp.message}</p>}
+                      {errors.no_hp && (
+                        <p className="px-2 pt-1 text-xs font-medium text-red-500">
+                          {errors.no_hp.message}
+                        </p>
+                      )}
                     </div>
                   </div>
 
                   <div className="w-full 2lg:py-6">
                     <div className="block text-sm">
-                      <label className="px-2 text-gray-800 font-medium">Email</label>
+                      <label className="px-2 text-gray-800 font-medium">
+                        Email
+                      </label>
                       <input
                         {...register("email", {
                           required: {
@@ -206,10 +252,16 @@ export default function register() {
                         className="form-input mt-1 block w-full text-sm rounded-md border-none shadow"
                         placeholder="pojokumkm@contoh.com"
                       />
-                      {errors.email && <p className="px-2 pt-1 text-xs font-medium text-red-500">{errors.email.message}</p>}
+                      {errors.email && (
+                        <p className="px-2 pt-1 text-xs font-medium text-red-500">
+                          {errors.email.message}
+                        </p>
+                      )}
                     </div>
                     <div className="relative text-sm mt-5">
-                      <label className="px-2 text-gray-800 font-medium">Kata Sandi</label>
+                      <label className="px-2 text-gray-800 font-medium">
+                        Kata Sandi
+                      </label>
                       <input
                         {...register("password", {
                           required: {
@@ -240,14 +292,31 @@ export default function register() {
                           d="M3.707 2.293a1 1 0 00-1.414 1.414l14 14a1 1 0 001.414-1.414l-1.473-1.473A10.014 10.014 0 0019.542 10C18.268 5.943 14.478 3 10 3a9.958 9.958 0 00-4.512 1.074l-1.78-1.781zm4.261 4.26l1.514 1.515a2.003 2.003 0 012.45 2.45l1.514 1.514a4 4 0 00-5.478-5.478z"
                           clipRule="evenodd"
                         />
-                        <path className={!isPasswordShow ? "block" : "hidden"} d="M12.454 16.697L9.75 13.992a4 4 0 01-3.742-3.741L2.335 6.578A9.98 9.98 0 00.458 10c1.274 4.057 5.065 7 9.542 7 .847 0 1.669-.105 2.454-.303z" />
-                        <path className={isPasswordShow ? "block" : "hidden"} d="M10 12a2 2 0 100-4 2 2 0 000 4z" />
-                        <path className={isPasswordShow ? "block" : "hidden"} fillRule="evenodd" d="M.458 10C1.732 5.943 5.522 3 10 3s8.268 2.943 9.542 7c-1.274 4.057-5.064 7-9.542 7S1.732 14.057.458 10zM14 10a4 4 0 11-8 0 4 4 0 018 0z" clipRule="evenodd" />
+                        <path
+                          className={!isPasswordShow ? "block" : "hidden"}
+                          d="M12.454 16.697L9.75 13.992a4 4 0 01-3.742-3.741L2.335 6.578A9.98 9.98 0 00.458 10c1.274 4.057 5.065 7 9.542 7 .847 0 1.669-.105 2.454-.303z"
+                        />
+                        <path
+                          className={isPasswordShow ? "block" : "hidden"}
+                          d="M10 12a2 2 0 100-4 2 2 0 000 4z"
+                        />
+                        <path
+                          className={isPasswordShow ? "block" : "hidden"}
+                          fillRule="evenodd"
+                          d="M.458 10C1.732 5.943 5.522 3 10 3s8.268 2.943 9.542 7c-1.274 4.057-5.064 7-9.542 7S1.732 14.057.458 10zM14 10a4 4 0 11-8 0 4 4 0 018 0z"
+                          clipRule="evenodd"
+                        />
                       </svg>
-                      {errors.password && <p className="px-2 pt-1 text-xs font-medium text-red-500">{errors.password.message}</p>}
+                      {errors.password && (
+                        <p className="px-2 pt-1 text-xs font-medium text-red-500">
+                          {errors.password.message}
+                        </p>
+                      )}
                     </div>
                     <div className="block text-sm mt-5">
-                      <label className="px-2 text-gray-800 font-medium">Jenis Kelamin</label>
+                      <label className="px-2 text-gray-800 font-medium">
+                        Jenis Kelamin
+                      </label>
                       <select
                         {...register("jenis_kelamin", {
                           required: {
@@ -261,12 +330,18 @@ export default function register() {
                         <option value="Laki-laki">Laki-laki</option>
                         <option value="Perempuan">Perempuan</option>
                       </select>
-                      {errors.jenis_kelamin && <p className="px-2 pt-1 text-xs font-medium text-red-500">{errors.jenis_kelamin.message}</p>}
+                      {errors.jenis_kelamin && (
+                        <p className="px-2 pt-1 text-xs font-medium text-red-500">
+                          {errors.jenis_kelamin.message}
+                        </p>
+                      )}
                     </div>
                   </div>
                 </div>
                 <div className="block text-sm mt-5 2lg:mt-0">
-                  <label className="px-2 text-gray-800 font-medium">Alamat Usaha</label>
+                  <label className="px-2 text-gray-800 font-medium">
+                    Alamat Usaha
+                  </label>
                   <textarea
                     {...register("alamat", {
                       required: {
@@ -277,7 +352,11 @@ export default function register() {
                     className="form-input mt-1 block w-full text-sm rounded-md border-none shadow"
                     placeholder="Jl. Raya Mauk No.89, Sepatan, Tangerang, Banten 15520, Indonesia"
                   ></textarea>
-                  {errors.alamat && <p className="px-2 pt-1 text-xs font-medium text-red-500">{errors.alamat.message}</p>}
+                  {errors.alamat && (
+                    <p className="px-2 pt-1 text-xs font-medium text-red-500">
+                      {errors.alamat.message}
+                    </p>
+                  )}
                 </div>
                 <div className="flex items-center mt-5">
                   <input
@@ -288,24 +367,42 @@ export default function register() {
                     })}
                     id="agreement"
                     type="checkbox"
-                    className="form-checkbox h-4 w-4 border-gray-50 rounded cursor-pointer shadow"
+                    className="form-checkbox h-4 w-4 border-gray-300 rounded cursor-pointer shadow"
                   />
-                  <label for="agreement" className="ml-3 block text-xs text-gray-800 select-none cursor-pointer">
+                  <label
+                    for="agreement"
+                    className="ml-3 block text-xs text-gray-800 select-none cursor-pointer"
+                  >
                     Saya menyatakan bahwa data yang diisikan adalah benar.
                   </label>
                 </div>
                 <div className="text-center">
-                  <button type="submit" className="w-52 h-8 mt-6 text-xs rounded text-slate-50 bg-fuchsia-600 hover:bg-fuchsia-500 shadow hover:shadow-fuchsia-500/50">
-                    Daftar
+                  <button
+                    type="submit"
+                    className="w-52 h-8 mt-6 text-xs rounded text-slate-50 bg-fuchsia-600 hover:bg-fuchsia-500 shadow hover:shadow-fuchsia-500/50"
+                  >
+                    {isLoading ? (
+                      <div className="flex items-center justify-center space-x-2">
+                        <div
+                          className="spinner-border animate-spin inline-block w-4 h-4 border-1 rounded-full"
+                          role="status"
+                        ></div>
+                        <span className="">Tunggu...</span>
+                      </div>
+                    ) : (
+                      "Daftar"
+                    )}
                   </button>
-                  <ToastContainer position="top-right" autoClose={5000} hideProgressBar={false} newestOnTop={false} closeOnClick rtl={false} pauseOnFocusLoss draggable pauseOnHover />
                 </div>
 
                 <div>
                   <p className="text-center text-xs text-gray-800 mt-6">
                     Sudah punya akun?
                     <Link href="/login">
-                      <a className="font-semibold text-fuchsia-600"> Masuk Disini</a>
+                      <a className="font-semibold text-fuchsia-600">
+                        {" "}
+                        Masuk Disini
+                      </a>
                     </Link>
                   </p>
                 </div>
