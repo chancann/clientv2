@@ -5,7 +5,6 @@ import { useState } from "react";
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import { useForm } from "react-hook-form";
-// import register from "./register";
 
 export default function forgotPassword() {
   const [isLoading, setIsloading] = useState(false);

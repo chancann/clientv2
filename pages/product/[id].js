@@ -2,7 +2,6 @@ import { useState, useEffect } from "react";
 import MainLayout from "../../components/layouts/MainLayout";
 import { useRouter } from "next/router";
 import baseURL from "../../api/baseURL";
-import Slider from "react-slick";
 import moment from "moment";
 import "moment/locale/id";
 import Cookies from "js-cookie";
@@ -11,35 +10,6 @@ import Link from "next/link";
 import Modal from "../../components/Modal";
 
 export default function detail() {
-  const settings = {
-    infinite: false,
-    slidesToShow: 5,
-    slidesToScroll: 5,
-    responsive: [
-      {
-        breakpoint: 1024,
-        settings: {
-          slidesToShow: 3,
-          slidesToScroll: 3,
-        },
-      },
-      {
-        breakpoint: 640,
-        settings: {
-          slidesToShow: 2,
-          slidesToScroll: 2,
-        },
-      },
-      {
-        breakpoint: 480,
-        settings: {
-          slidesToShow: 1,
-          slidesToScroll: 1,
-        },
-      },
-    ],
-  };
-
   const router = useRouter();
   const [details, setDetails] = useState({});
   const [author, setAuthor] = useState({});
@@ -83,13 +53,16 @@ export default function detail() {
         <section className="flex items-center min-h-screen font-poppins">
           <div className="w-full flex flex-col 2lg:flex-row items-center mt-20 2lg:mt-0">
             <figure>
-              <Slider {...settings}></Slider>
+                {details.images?.map((image, index) => (
+                  <div className="" key={index}>
+                    <img
+                      className="w-[400px] object-cover rounded-sm"
+                      src={`${baseURL.defaults.baseURL}/${image.data}`}
+                      alt=""
+                    />
+                  </div>
+                ))}
             </figure>
-            {details.images?.map((image, index) => (
-              <div className="p-2" key={index}>
-                <img src={`${baseURL.defaults.baseURL}/${image.data}`} alt="" />
-              </div>
-            ))}
 
             <div className="flex flex-col md:w-4/5 h-auto md:p-4 text-gray-800">
               <h2 className="mb-2 text-xl font-bold">{details.category}</h2>

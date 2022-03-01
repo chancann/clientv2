@@ -1,47 +1,13 @@
 import Card from "../../components/Card";
 import MainLayout from "../../components/layouts/MainLayout";
-import "slick-carousel/slick/slick.css";
-import "slick-carousel/slick/slick-theme.css";
 import baseURL from "../../api/baseURL";
 import { useEffect, useState } from "react";
-import InfiniteScroll from "react-infinite-scroll-component";
 import moment from "moment";
 import "moment/locale/id";
 
 export default function product() {
-  const [isOpen, setIsOpen] = useState(false);
   const [isLoading, setIsLoading] = useState(false);
-
   const [category, setCategory] = useState("");
-  const settings = {
-    infinite: false,
-    slidesToShow: 4,
-    slidesToScroll: 4,
-    responsive: [
-      {
-        breakpoint: 1024,
-        settings: {
-          slidesToShow: 3,
-          slidesToScroll: 3,
-        },
-      },
-      {
-        breakpoint: 640,
-        settings: {
-          slidesToShow: 2,
-          slidesToScroll: 2,
-        },
-      },
-      {
-        breakpoint: 480,
-        settings: {
-          slidesToShow: 1,
-          slidesToScroll: 1,
-        },
-      },
-    ],
-  };
-
   const [products, setProducts] = useState([]);
 
   const getProducts = async () => {
@@ -86,18 +52,10 @@ export default function product() {
     <>
       <MainLayout>
         <section className="min-h-[90vh] font-poppins">
-          <div className="mt-20 text-gray-800">
+          <div className="mt-20 mb-4 text-gray-800">
             <div className="text-center">
               <h2 className="p-4 font-bold text-3xl">Produk</h2>
             </div>
-            {/* <div className="flex justify-center items-center">
-              <div
-                className="spinner-border animate-spin inline-block w-8 h-8 border-4 rounded-full"
-                role="status"
-              >
-                <span className="visually-hidden">Loading...</span>
-              </div>
-            </div> */}
             <div className="flex mb-6">
               <div className="w-full relative">
                 <div className="flex justify-end">
@@ -191,55 +149,6 @@ export default function product() {
                 ))}
               </div>
             )}
-
-            {/* <div className="flex justify-center mt-4">
-              <nav>
-                <ul className="flex list-style-none">
-                  <li className="page-item">
-                    <a
-                      className="page-link relative block py-1.5 px-3 border-0 bg-transparent outline-none transition-all duration-300 text-gray-800 hover:text-gray-800 focus:shadow-none"
-                      href="#"
-                      aria-label="Previous"
-                    >
-                      <span aria-hidden="true">&laquo;</span>
-                    </a>
-                  </li>
-                  <li className="page-item">
-                    <a
-                      className="page-link relative block py-1.5 px-3 border-0 bg-transparent outline-none transition-all duration-300 text-gray-800 hover:text-gray-800 hover:bg-gray-200 focus:shadow-none"
-                      href="#"
-                    >
-                      1
-                    </a>
-                  </li>
-                  <li className="page-item">
-                    <a
-                      className="page-link relative block py-1.5 px-3 border-0 bg-transparent outline-none transition-all duration-300 text-gray-800 hover:text-gray-800 hover:bg-gray-200 focus:shadow-none"
-                      href="#"
-                    >
-                      2
-                    </a>
-                  </li>
-                  <li className="page-item">
-                    <a
-                      className="page-link relative block py-1.5 px-3 border-0 bg-transparent outline-none transition-all duration-300 text-gray-800 hover:text-gray-800 hover:bg-gray-200 focus:shadow-none"
-                      href="#"
-                    >
-                      3
-                    </a>
-                  </li>
-                  <li className="page-item">
-                    <a
-                      className="page-link relative block py-1.5 px-3 border-0 bg-transparent outline-none transition-all duration-300 text-gray-800 hover:text-gray-800 hover:bg-gray-200 focus:shadow-none"
-                      href="#"
-                      aria-label="Next"
-                    >
-                      <span aria-hidden="true">&raquo;</span>
-                    </a>
-                  </li>
-                </ul>
-              </nav>
-            </div> */}
           </div>
         </section>
       </MainLayout>

@@ -3,15 +3,12 @@ import Link from "next/link";
 import MainLayout from "../components/layouts/MainLayout";
 import heroRegister from "../public/heroRegister.svg";
 import baseURL from "../api/baseURL";
-import Cookies from "js-cookie";
-import { useRouter } from "next/router";
 import { useForm } from "react-hook-form";
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import { useState } from "react";
 
 export default function register() {
-  const router = useRouter();
   const [isPasswordShow, setIsPasswordShow] = useState(false);
   const [isLoading, setIsloading] = useState(false);
 
@@ -22,8 +19,6 @@ export default function register() {
   } = useForm();
 
   const onSubmit = async (data) => {
-    // console.log(data);
-    // e.preventDefault();
     try {
       setIsloading(true);
       const response = await baseURL.post("/api/user/add", {
@@ -83,17 +78,6 @@ export default function register() {
       console.log(error);
     }
   };
-
-  //  State
-  // const [form, setForm] = useState({
-  //   nik: "",
-  //   nama_lengkap: "",
-  //   email: "",
-  //   password: "",
-  //   alamat: "",
-  //   jenis_kelamin: "",
-  //   no_hp: "",
-  // });
 
   return (
     <>
