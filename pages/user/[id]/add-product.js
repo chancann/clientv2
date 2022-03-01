@@ -9,6 +9,7 @@ import heroAddProduct from "../../../public/heroAddProduct.svg";
 
 export default function addProduct() {
   const router = useRouter();
+  const [isLoading, setIsLoading] = useState(false);
 
   const {
     register,
@@ -33,6 +34,7 @@ export default function addProduct() {
 
   const onSubmit = async (e) => {
     try {
+      setIsLoading(true);
       if (files) {
         const formData = new FormData();
         formData.append("title", form.title);
@@ -49,6 +51,7 @@ export default function addProduct() {
         if (response.data.status === 200) {
           router.push(`/user/${router.query.id}`);
         }
+        setIsLoading(false);
       }
     } catch (error) {
       console.log(error);
@@ -247,7 +250,17 @@ export default function addProduct() {
                 </div>
                 <div className="text-center">
                   <button className="w-52 h-8 mt-6 text-xs rounded text-slate-50 bg-fuchsia-600 hover:bg-fuchsia-500 shadow hover:shadow-fuchsia-500/50">
-                    Tambahkan Produk
+                    {isLoading ? (
+                      <div className="flex items-center justify-center space-x-2">
+                        <div
+                          className="spinner-border animate-spin inline-block w-4 h-4 border-1 rounded-full"
+                          role="status"
+                        ></div>
+                        <span className="">Tunggu...</span>
+                      </div>
+                    ) : (
+                      "Tambahkan Produk"
+                    )}
                   </button>
                 </div>
               </form>

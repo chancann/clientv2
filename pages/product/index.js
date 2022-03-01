@@ -85,7 +85,7 @@ export default function product() {
   return (
     <>
       <MainLayout>
-        <section className="min-h-screen font-poppins">
+        <section className="min-h-[90vh] font-poppins">
           <div className="mt-20 text-gray-800">
             <div className="text-center">
               <h2 className="p-4 font-bold text-3xl">Produk</h2>
@@ -130,102 +130,48 @@ export default function product() {
                     <option value="Perawatan Tubuh"> Perawatan Tubuh</option>
                   </select>
                 </div>
-                {/* <div className="flex justify-end">
-                  <div className="">
-                    <button
-                      onClick={() => {
-                        setIsOpen(!isOpen);
-                      }}
-                      type="button"
-                      className="p-2 text-sm inline-flex items-center hover:bg-gray-50 focus:outline-none"
-                      id="menu-button"
-                      aria-expanded="true"
-                      aria-haspopup="true"
-                    >
-                      Pilih Kategori
-                      <svg
-                        className="-mr-1 ml-2 h-5 w-5"
-                        xmlns="http://www.w3.org/2000/svg"
-                        viewBox="0 0 20 20"
-                        fill="currentColor"
-                        aria-hidden="true"
-                      >
-                        <path
-                          fillRule="evenodd"
-                          d="M5.293 7.293a1 1 0 011.414 0L10 10.586l3.293-3.293a1 1 0 111.414 1.414l-4 4a1 1 0 01-1.414 0l-4-4a1 1 0 010-1.414z"
-                          clipRule="evenodd"
-                        />
-                      </svg>
-                    </button>
-                  </div>
-                </div> */}
-
-                {/* <div
-                  className={`${
-                    isOpen ? "block" : "hidden"
-                  } z-10 origin-top-right absolute right-0 mt-2 w-56 rounded-md shadow-lg bg-white ring-1 ring-black ring-opacity-5 focus:outline-none`}
-                  role="menu"
-                  aria-orientation="vertical"
-                  aria-labelledby="menu-button"
-                  tabIndex={-1}
-                >
-                  <div className="py-1" role="none">
-                    <a
-                      href="/"
-                      className="block px-4 py-2 text-sm hover:bg-gray-50"
-                      role="menuitem"
-                      tabIndex={-1}
-                      id="menu-item-0"
-                    >
-                      Makanan
-                    </a>
-                    <a
-                      href="/"
-                      className="block px-4 py-2 text-sm hover:bg-gray-50"
-                      role="menuitem"
-                      tabIndex={-1}
-                      id="menu-item-0"
-                    >
-                      Minuman
-                    </a>
-                    <a
-                      href="/"
-                      className="block px-4 py-2 text-sm hover:bg-gray-50"
-                      role="menuitem"
-                      tabIndex={-1}
-                      id="menu-item-0"
-                    >
-                      Pakaian
-                    </a>
-                    <a
-                      href="/"
-                      className="block px-4 py-2 text-sm hover:bg-gray-50"
-                      role="menuitem"
-                      tabIndex={-1}
-                      id="menu-item-0"
-                    >
-                      Kerajinan Tangan
-                    </a>
-                    <a
-                      href="/"
-                      className="block px-4 py-2 text-sm hover:bg-gray-50"
-                      role="menuitem"
-                      tabIndex={-1}
-                      id="menu-item-0"
-                    >
-                      Perawatan Tubuh
-                    </a>
-                  </div>
-                </div> */}
               </div>
             </div>
             {isLoading ? (
-              <div className="flex items-center justify-center">
+              <div class="flex min-h-[50vh] justify-center items-center space-x-2">
                 <div
-                  className="spinner-border animate-spin inline-block w-8 h-8 border-4 rounded-full"
+                  class="spinner-grow inline-block w-6 h-6 bg-current rounded-full opacity-0 text-blue-500"
                   role="status"
                 >
-                  <span className="visually-hidden">Loading...</span>
+                  <span class="visually-hidden">Loading...</span>
+                </div>
+                <div
+                  class="
+                  spinner-grow inline-block w-6 h-6 bg-current rounded-full opacity-0
+                    text-purple-500
+                  "
+                  role="status"
+                >
+                  <span class="visually-hidden">Loading...</span>
+                </div>
+                <div
+                  class="
+                  spinner-grow inline-block w-6 h-6 bg-current rounded-full opacity-0
+                    text-green-500
+                  "
+                  role="status"
+                >
+                  <span class="visually-hidden">Loading...</span>
+                </div>
+                <div
+                  class="spinner-grow inline-block w-6 h-6 bg-current rounded-full opacity-0 text-red-500"
+                  role="status"
+                >
+                  <span class="visually-hidden">Loading...</span>
+                </div>
+                <div
+                  class="
+                  spinner-grow inline-block w-6 h-6 bg-current rounded-full opacity-0
+                    text-yellow-500
+                  "
+                  role="status"
+                >
+                  <span class="visually-hidden">Loading...</span>
                 </div>
               </div>
             ) : (
