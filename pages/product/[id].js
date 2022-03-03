@@ -52,11 +52,11 @@ export default function detail() {
       <MainLayout>
         <section className="flex items-center min-h-screen font-poppins">
           <div className="w-full flex flex-col 2lg:flex-row items-center mt-20 2lg:mt-0">
-            <figure>
+            <figure className="mb-3">
                 {details.images?.map((image, index) => (
                   <div className="relative overflow-hidden bg-no-repeat bg-cover" key={index}>
                     <img
-                      className="w-[400px] object-cover rounded-sm hover:scale-110 transition duration-300 ease-in-out"
+                      className="w-[400px] h-[350px] object-cover rounded-sm hover:scale-105 transition duration-300 ease-in-out"
                       src={`${baseURL.defaults.baseURL}/${image.data}`}
                       alt=""
                     />

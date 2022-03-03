@@ -18,7 +18,7 @@ export default function Card({ title, createdAt, price, author, img, prodId }) {
         {/* <Image className="rounded-sm" src={img ? img : ""} alt="heroProduct" /> */}
         <img
           src={img}
-          className="rounded-sm h-[250px] w-full object-cover hover:scale-110 transition duration-300 ease-in-out"
+          className="rounded-sm w-full h-[260px] object-cover hover:scale-105 transition duration-300 ease-in-out"
           alt=""
         />
       </figure>
