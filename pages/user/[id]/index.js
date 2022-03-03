@@ -135,6 +135,8 @@ export default function profile() {
           password: userPassword,
         });
         setImage(`${baseURL.defaults.baseURL}/${user.image}`);
+      } else {
+        router.push("/")
       }
     } catch (error) {
       console.log(error);

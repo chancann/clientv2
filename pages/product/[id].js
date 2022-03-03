@@ -30,6 +30,8 @@ export default function detail() {
         if (user._id === response.data.data.author._id) {
           setIsAuthor(true);
         }
+      } else {
+        router.push("/product");
       }
     } catch (error) {
       console.log(error);
@@ -53,15 +55,18 @@ export default function detail() {
         <section className="flex items-center min-h-screen font-poppins">
           <div className="w-full flex flex-col 2lg:flex-row items-center mt-20 2lg:mt-0">
             <figure className="mb-3">
-                {details.images?.map((image, index) => (
-                  <div className="relative overflow-hidden bg-no-repeat bg-cover" key={index}>
-                    <img
-                      className="w-[400px] h-[350px] object-cover rounded-sm hover:scale-105 transition duration-300 ease-in-out"
-                      src={`${baseURL.defaults.baseURL}/${image.data}`}
-                      alt=""
-                    />
-                  </div>
-                ))}
+              {details.images?.map((image, index) => (
+                <div
+                  className="relative overflow-hidden bg-no-repeat bg-cover"
+                  key={index}
+                >
+                  <img
+                    className="w-[400px] h-[350px] object-cover rounded-sm hover:scale-105 transition duration-300 ease-in-out"
+                    src={`${baseURL.defaults.baseURL}/${image.data}`}
+                    alt=""
+                  />
+                </div>
+              ))}
             </figure>
 
             <div className="flex flex-col md:w-4/5 h-auto md:p-4 text-gray-800">

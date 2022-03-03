@@ -1,6 +1,8 @@
 import { useRouter } from "next/router";
 import { useEffect, useState } from "react";
 import baseURL from "../api/baseURL";
+import Cookies from "js-cookie";
+import decode from "jwt-decode";
 
 export default function Modal() {
   const router = useRouter();
