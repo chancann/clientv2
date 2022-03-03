@@ -93,14 +93,14 @@ export default function product() {
             {isLoading ? (
               <div class="flex min-h-[50vh] justify-center items-center space-x-2">
                 <div
-                  class="spinner-grow inline-block w-6 h-6 bg-current rounded-full opacity-0 text-blue-500"
+                  class="spinner-grow inline-block w-4 h-4 bg-current rounded-full opacity-0 text-blue-500"
                   role="status"
                 >
                   <span class="visually-hidden">Loading...</span>
                 </div>
                 <div
                   class="
-                  spinner-grow inline-block w-6 h-6 bg-current rounded-full opacity-0
+                  spinner-grow inline-block w-4 h-4 bg-current rounded-full opacity-0
                     text-purple-500
                   "
                   role="status"
@@ -109,7 +109,7 @@ export default function product() {
                 </div>
                 <div
                   class="
-                  spinner-grow inline-block w-6 h-6 bg-current rounded-full opacity-0
+                  spinner-grow inline-block w-4 h-4 bg-current rounded-full opacity-0
                     text-green-500
                   "
                   role="status"
@@ -117,14 +117,14 @@ export default function product() {
                   <span class="visually-hidden">Loading...</span>
                 </div>
                 <div
-                  class="spinner-grow inline-block w-6 h-6 bg-current rounded-full opacity-0 text-red-500"
+                  class="spinner-grow inline-block w-4 h-4 bg-current rounded-full opacity-0 text-red-500"
                   role="status"
                 >
                   <span class="visually-hidden">Loading...</span>
                 </div>
                 <div
                   class="
-                  spinner-grow inline-block w-6 h-6 bg-current rounded-full opacity-0
+                  spinner-grow inline-block w-4 h-4 bg-current rounded-full opacity-0
                     text-yellow-500
                   "
                   role="status"

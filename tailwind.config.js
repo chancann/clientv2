@@ -26,12 +26,26 @@ module.exports = {
       // 'montserrat':['Montserrat', 'sans-serif'],
       // 'inter':['Inter', 'sans-serif'],
     },
-    extend: {},
+    extend: {
+      keyframes: {
+        wiggle: {
+          "0%, 100%": {
+            transform: "translate(-3px)",
+          },
+          "50%": {
+            transform: "translate(3px)",
+          },
+        },
+      },
+      animation: {
+        wiggle: "wiggle 1s ease-in-out infinite",
+      },
+    },
   },
   plugins: [
     require("@tailwindcss/forms")({
       strategy: "class",
     }),
-    require("tw-elements/dist/plugin")
+    require("tw-elements/dist/plugin"),
   ],
 };

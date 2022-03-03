@@ -14,15 +14,15 @@ export default function Card({ title, createdAt, price, author, img, prodId }) {
 
   return (
     <div className="mx-2 my-1 bg-white/80 shadow">
-      <figure className="p-6 2sm:p-2">
+      <figure className="relative overflow-hidden bg-no-repeat bg-cover">
         {/* <Image className="rounded-sm" src={img ? img : ""} alt="heroProduct" /> */}
         <img
           src={img}
-          className="rounded-sm h-[250px] w-full object-cover"
+          className="rounded-sm h-[250px] w-full object-cover hover:scale-110 transition duration-300 ease-in-out"
           alt=""
         />
       </figure>
-      <div>
+      <div className="mt-3">
         <h2 className="font-bold text-base text-center tracking-tight text-fuchsia-900/90 mb-2">
           {title}
         </h2>
@@ -37,15 +37,15 @@ export default function Card({ title, createdAt, price, author, img, prodId }) {
           <p className="text-xl font-thin">|</p>
           <Link
             href={`/product/${prodId}`}
-            className="inline-flex items-center text-xs font-light cursor-pointer"
+            className=""
           >
-            <div className="flex items-center">
-              <span className="text-[12px] cursor-pointer">Detail</span>
+            <div className="flex items-center text-xs cursor-pointer font-medium hover:text-fuchsia-500">
+              <span className="text-[12px]">Detail</span>
               <svg
-                className="w-3 h-3 ml-2 cursor-pointer"
+                className="w-3 h-3 ml-2 animate-wiggle"
                 viewBox="0 0 24 24"
                 stroke="currentColor"
-                strokeWidth={1}
+                strokeWidth={2}
                 fill="none"
                 strokeLinecap="round"
                 strokeLinejoin="round"

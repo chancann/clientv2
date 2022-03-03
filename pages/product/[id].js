@@ -54,9 +54,9 @@ export default function detail() {
           <div className="w-full flex flex-col 2lg:flex-row items-center mt-20 2lg:mt-0">
             <figure>
                 {details.images?.map((image, index) => (
-                  <div className="" key={index}>
+                  <div className="relative overflow-hidden bg-no-repeat bg-cover" key={index}>
                     <img
-                      className="w-[400px] object-cover rounded-sm"
+                      className="w-[400px] object-cover rounded-sm hover:scale-110 transition duration-300 ease-in-out"
                       src={`${baseURL.defaults.baseURL}/${image.data}`}
                       alt=""
                     />
