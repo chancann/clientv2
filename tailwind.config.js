@@ -7,12 +7,12 @@ module.exports = {
   ],
   theme: {
     screens: {
-      sm: "320px",
+      "sm": "320px",
       "2sm": "480px",
-      md: "640px",
-      lg: "768px",
+      "md": "640px",
+      "lg": "768px",
       "2lg": "860px",
-      xl: "1024px",
+      "xl": "1024px",
       "2xl": "1280px",
       "3xl": "1440px",
       "4xl": "1536px",
@@ -36,9 +36,18 @@ module.exports = {
             transform: "translate(3px)",
           },
         },
+        rolling:{
+          "0%, 100%": {
+            transform: "translate(-30px)",
+          },
+          "50%": {
+            transform: "translate(30px)",
+          },
+        }
       },
       animation: {
         wiggle: "wiggle 1s ease-in-out infinite",
+        rolling: "rolling 2s ease-in-out infinite"
       },
     },
   },

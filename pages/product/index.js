@@ -51,8 +51,8 @@ export default function product() {
   return (
     <>
       <MainLayout>
-        <section className="min-h-[90vh] font-poppins">
-          <div className="mt-20 mb-4 text-gray-800">
+        <section className="min-h-[100vh] font-poppins">
+          <div className="pt-20 mb-4 text-gray-800">
             <div className="text-center">
               <h2 className="p-4 font-bold text-3xl">Produk</h2>
             </div>
@@ -60,7 +60,7 @@ export default function product() {
               <div className="w-full relative">
                 <div className="flex justify-end">
                   <select
-                    defaultValue={category}
+                    value={category}
                     onChange={(e) => {
                       setCategory(e.target.value);
                     }}
@@ -77,7 +77,7 @@ export default function product() {
                   m-0
                   focus:text-gray-700 focus:bg-white focus:outline-none"
                   >
-                    <option disabled selected="selected">
+                    <option disabled>
                       Pilih Kategori
                     </option>
                     <option value="all">Semua Kategori</option>
@@ -91,45 +91,45 @@ export default function product() {
               </div>
             </div>
             {isLoading ? (
-              <div class="flex min-h-[50vh] justify-center items-center space-x-2">
+              <div className="flex min-h-[50vh] justify-center items-center space-x-2">
                 <div
-                  class="spinner-grow inline-block w-4 h-4 bg-current rounded-full opacity-0 text-blue-500"
+                  className="spinner-grow inline-block w-4 h-4 bg-current rounded-full opacity-0 text-blue-500"
                   role="status"
                 >
-                  <span class="visually-hidden">Loading...</span>
+                  <span className="visually-hidden">Loading...</span>
                 </div>
                 <div
-                  class="
+                  className="
                   spinner-grow inline-block w-4 h-4 bg-current rounded-full opacity-0
                     text-purple-500
                   "
                   role="status"
                 >
-                  <span class="visually-hidden">Loading...</span>
+                  <span className="visually-hidden">Loading...</span>
                 </div>
                 <div
-                  class="
+                  className="
                   spinner-grow inline-block w-4 h-4 bg-current rounded-full opacity-0
                     text-green-500
                   "
                   role="status"
                 >
-                  <span class="visually-hidden">Loading...</span>
+                  <span className="visually-hidden">Loading...</span>
                 </div>
                 <div
-                  class="spinner-grow inline-block w-4 h-4 bg-current rounded-full opacity-0 text-red-500"
+                  className="spinner-grow inline-block w-4 h-4 bg-current rounded-full opacity-0 text-red-500"
                   role="status"
                 >
-                  <span class="visually-hidden">Loading...</span>
+                  <span className="visually-hidden">Loading...</span>
                 </div>
                 <div
-                  class="
+                  className="
                   spinner-grow inline-block w-4 h-4 bg-current rounded-full opacity-0
                     text-yellow-500
                   "
                   role="status"
                 >
-                  <span class="visually-hidden">Loading...</span>
+                  <span className="visually-hidden">Loading...</span>
                 </div>
               </div>
             ) : (
