@@ -1,6 +1,6 @@
-import Image from "next/image";
 import Link from "next/link";
 import moment from "moment";
+import { motion } from "framer-motion";
 
 export default function Card({ title, createdAt, price, author, img, prodId }) {
   // idr formatter
@@ -13,7 +13,10 @@ export default function Card({ title, createdAt, price, author, img, prodId }) {
   };
 
   return (
-    <div className="mx-2 my-1 bg-white/80 shadow">
+    <motion.div
+      animate={{ scale: [0, 1] }}
+      className="mx-2 my-1 bg-white/80 shadow"
+    >
       <figure className="relative overflow-hidden bg-no-repeat bg-cover">
         {/* <Image className="rounded-sm" src={img ? img : ""} alt="heroProduct" /> */}
         <img
@@ -35,10 +38,7 @@ export default function Card({ title, createdAt, price, author, img, prodId }) {
             {moment(createdAt).locale("id").fromNow()}
           </h5>
           <p className="text-xl font-thin">|</p>
-          <Link
-            href={`/product/${prodId}`}
-            className=""
-          >
+          <Link href={`/product/${prodId}`} className="">
             <div className="flex items-center text-xs cursor-pointer font-medium hover:text-fuchsia-500">
               <span className="text-[12px]">Detail</span>
               <svg
@@ -57,6 +57,6 @@ export default function Card({ title, createdAt, price, author, img, prodId }) {
           </Link>
         </div>
       </div>
-    </div>
+    </motion.div>
   );
 }

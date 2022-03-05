@@ -6,6 +6,7 @@ import moment from "moment";
 import "moment/locale/id";
 import Cookies from "js-cookie";
 import decode from "jwt-decode";
+import { motion } from "framer-motion";
 import Link from "next/link";
 import Modal from "../../components/Modal";
 
@@ -56,7 +57,8 @@ export default function detail() {
           <div className="w-full flex flex-col 2lg:flex-row items-center mt-20 2lg:mt-0">
             <figure className="mb-3">
               {details.images?.map((image, index) => (
-                <div
+                <motion.div
+                  animate={{ x: [-100, 0] }}
                   className="relative overflow-hidden bg-no-repeat bg-cover"
                   key={index}
                 >
@@ -65,11 +67,14 @@ export default function detail() {
                     src={`${baseURL.defaults.baseURL}/${image.data}`}
                     alt=""
                   />
-                </div>
+                </motion.div>
               ))}
             </figure>
 
-            <div className="flex flex-col md:w-4/5 h-auto md:p-4 text-gray-800">
+            <motion.div
+              animate={{ x: [100, 0] }}
+              className="flex flex-col md:w-4/5 h-auto md:p-4 text-gray-800"
+            >
               <h2 className="mb-2 text-xl font-bold">{details.category}</h2>
               <h3 className="mb-2 text-lg font-bold tracking-tight text-fuchsia-900/90">
                 {details.title}
@@ -112,7 +117,7 @@ export default function detail() {
                   </a>
                 </button>
               </div>
-            </div>
+            </motion.div>
           </div>
         </section>
       </MainLayout>

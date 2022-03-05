@@ -1,5 +1,4 @@
 import Link from "next/link";
-import { atom, useRecoilValue } from "recoil";
 import { useState } from "react";
 import { useEffect } from "react";
 import Cookie from "js-cookie";

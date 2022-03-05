@@ -5,6 +5,7 @@ import MainLayout from "../components/layouts/MainLayout";
 import heroLogin from "../public/heroLogin.svg";
 import baseURL from "../api/baseURL";
 import Cookies from "js-cookie";
+import { motion } from "framer-motion";
 import { useForm } from "react-hook-form";
 import { useRouter } from "next/router";
 import { ToastContainer, toast } from "react-toastify";
@@ -80,12 +81,18 @@ export default function login() {
       <MainLayout>
         <section className="flex min-h-screen font-poppins justify-center">
           <div className="flex w-full m-auto 2lg:mt-20 flex-col items-center justify-between 2lg:flex-row">
-            <figure className="w-full hidden 2lg:inline-block">
+            <motion.figure
+              animate={{ x: [-100, 0] }}
+              className="w-full hidden 2lg:inline-block"
+            >
               <Image src={heroLogin} alt="heroLogin" width={500} height={500} />
-            </figure>
+            </motion.figure>
 
             {/* Form */}
-            <div className="md:w-9/12 px-6 py-4 rounded-md bg-gray-50/70">
+            <motion.div
+              animate={{ x: [100, 0] }}
+              className="md:w-9/12 px-6 py-4 rounded-md bg-gray-50/70"
+            >
               <div className="m-auto">
                 <div>
                   <h2 className="text-center text-sm font-bold tracking-wide text-gray-800">
@@ -200,9 +207,8 @@ export default function login() {
                             <div
                               className="spinner-border animate-spin inline-block w-4 h-4 border-1 rounded-full"
                               role="status"
-                            >
-                            </div>
-                              <span className="">Tunggu...</span>
+                            ></div>
+                            <span className="">Tunggu...</span>
                           </div>
                         ) : (
                           "Masuk"
@@ -224,7 +230,7 @@ export default function login() {
                   </div>
                 </form>
               </div>
-            </div>
+            </motion.div>
           </div>
         </section>
       </MainLayout>

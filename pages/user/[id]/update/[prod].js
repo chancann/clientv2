@@ -4,6 +4,7 @@ import baseURL from "../../../../api/baseURL";
 import { useRouter } from "next/router";
 import { useForm } from "react-hook-form";
 import Image from "next/image";
+import { motion } from "framer-motion";
 import heroAddProduct from "../../../../public/heroAddProduct.svg";
 import { useEffect } from "react";
 
@@ -103,16 +104,22 @@ export default function updateProduct() {
       <MainLayout>
         <section className="flex items-center min-h-screen justify-center font-poppins">
           <div className="mx-auto w-full flex flex-col 2lg:flex-row items-center mt-20 2lg:mt-0">
-            <figure className="hidden 2lg:inline-block">
+            <motion.figure
+              animate={{ x: [-100, 0] }}
+              className="hidden 2lg:inline-block"
+            >
               <Image
                 src={heroAddProduct}
                 alt="heroAddProduct"
                 width={650}
                 height={650}
               />
-            </figure>
+            </motion.figure>
 
-            <div className="w-full mx-auto px-6 py-4 rounded-md bg-gray-50/80">
+            <motion.div
+              animate={{ x: [100, 0] }}
+              className="w-full mx-auto px-6 py-4 rounded-md bg-gray-50/80"
+            >
               <div>
                 <h2 className="text-center text-xl font-bold tracking-wide text-gray-800">
                   Update Produk
@@ -296,7 +303,7 @@ export default function updateProduct() {
                   </button>
                 </div>
               </form>
-            </div>
+            </motion.div>
           </div>
         </section>
       </MainLayout>

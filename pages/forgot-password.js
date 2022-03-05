@@ -2,6 +2,7 @@ import Link from "next/link";
 import MainLayout from "../components/layouts/MainLayout";
 import baseUrl from "../api/baseURL";
 import { useState } from "react";
+import { motion } from "framer-motion";
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import { useForm } from "react-hook-form";
@@ -61,7 +62,10 @@ export default function forgotPassword() {
         pauseOnHover
       />
       <MainLayout>
-        <section className="flex m-auto py-10 2lg:py-0 min-h-screen font-poppins">
+        <motion.section
+          animate={{ y: [-100, 0] }}
+          className="flex m-auto py-10 2lg:py-0 min-h-screen font-poppins"
+        >
           <div className="flex w-full 2lg:mt-20">
             <div className="m-auto bg-gray-50/70 p-6 rounded-md">
               <div>
@@ -135,7 +139,7 @@ export default function forgotPassword() {
               </form>
             </div>
           </div>
-        </section>
+        </motion.section>
       </MainLayout>
     </>
   );

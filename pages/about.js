@@ -1,7 +1,5 @@
-import Image from "next/image";
 import MainLayout from "../components/layouts/MainLayout";
-import heroAbout from "../public/heroAbout.jpg";
-
+import { motion } from "framer-motion";
 export default function about() {
   return (
     <>
@@ -11,7 +9,10 @@ export default function about() {
             <div className="text-center">
               <h2 className="p-4 font-bold text-3xl">Tentang</h2>
             </div>
-            <div className="flex flex-col items-center justify-center gap-3">
+            <motion.div
+              animate={{ y: [100, 0] }}
+              className="flex flex-col items-center justify-center gap-3"
+            >
               <div className="w-full 2lg:w-2/3">
                 <p className="first-letter:text-[30px] first-letter:leading-none first-letter:text-fuchsia-600 first-letter:font-extrabold text-justify md:text-center text-[12px] 2lg:text-[14px]">
                   <span className="font-extrabold tracking-wider text-fuchsia-600">
@@ -39,7 +40,7 @@ export default function about() {
 
               <div className="relative flex justify-center w-full">
                 <iframe
-                  className="w-full 2lg:h-[350px] h-[250px]"
+                  className="w-full 2lg:h-[350px] h-[300px]"
                   src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3967.089394074696!2d106.57288694790621!3d-6.118668399999993!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x2e6a0049502b954b%3A0xd0c256913a94ff6c!2sKantor%20Kecamatan%20Sepatan!5e0!3m2!1sid!2sid!4v1646384786005!5m2!1sid!2sid"
                   style={{ border: 0 }}
                   allowFullScreen=""
@@ -56,7 +57,7 @@ export default function about() {
                   </button>
                 </div>
               </div>
-            </div>
+            </motion.div>
           </div>
         </section>
       </MainLayout>

@@ -4,6 +4,7 @@ import MainLayout from "../components/layouts/MainLayout";
 import heroRegister from "../public/heroRegister.svg";
 import baseURL from "../api/baseURL";
 import { useForm } from "react-hook-form";
+import { motion } from "framer-motion";
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import { useState } from "react";
@@ -95,17 +96,23 @@ export default function register() {
       <MainLayout>
         <section className="flex py-2 min-h-screen font-poppins">
           <div className="w-full flex mt-20 flex-col items-center 2lg:flex-row">
-            <figure className="hidden 2lg:inline-block">
+            <motion.figure
+              animate={{ x: [-100, 0] }}
+              className="hidden 2lg:inline-block"
+            >
               <Image
                 src={heroRegister}
                 alt="heroRegister"
                 width={650}
                 height={650}
               />
-            </figure>
+            </motion.figure>
 
             {/* Form */}
-            <div className="w-full mx-auto px-6 py-4 rounded-md bg-gray-50/70">
+            <motion.div
+              animate={{ x: [100, 0] }}
+              className="w-full mx-auto px-6 py-4 rounded-md bg-gray-50/70"
+            >
               <form onSubmit={handleSubmit(onSubmit)}>
                 <div>
                   <h2 className="text-center text-sm font-bold tracking-wide text-gray-800">
@@ -354,7 +361,7 @@ export default function register() {
                     className="form-checkbox h-4 w-4 border-gray-300 rounded cursor-pointer shadow"
                   />
                   <label
-                    for="agreement"
+                    htmlFor="agreement"
                     className="ml-3 block text-xs text-gray-800 select-none cursor-pointer"
                   >
                     Saya menyatakan bahwa data yang diisikan adalah benar.
@@ -391,7 +398,7 @@ export default function register() {
                   </p>
                 </div>
               </form>
-            </div>
+            </motion.div>
           </div>
         </section>
       </MainLayout>

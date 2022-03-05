@@ -6,6 +6,7 @@ import MainLayout from "../../../components/layouts/MainLayout";
 import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
 import { useRouter } from "next/router";
+import { motion } from "framer-motion";
 import baseURL from "../../../api/baseURL";
 import Link from "next/link";
 import heroEmptyProduct from "../../../public/heroEmptyProduct.svg";
@@ -136,7 +137,7 @@ export default function profile() {
         });
         setImage(`${baseURL.defaults.baseURL}/${user.image}`);
       } else {
-        router.push("/")
+        router.push("/");
       }
     } catch (error) {
       console.log(error);
@@ -188,14 +189,15 @@ export default function profile() {
       />
       <MainLayout>
         <section className="flex items-center min-h-screen font-poppins">
-          <div className="w-full mt-20">
-            <div className="w-full flex flex-col items-center">
+          <div className="w-full pt-20">
+            <div className="block text-center">
+              <h2 className="p-4 text-gray-800 font-bold text-3xl">Profil</h2>
+            </div>
+            <motion.div
+              animate={{ y: [-100, 0] }}
+              className="w-full flex flex-col items-center"
+            >
               <figure className="md:w-6/12 text-center">
-                <div className="block text-center">
-                  <h2 className="p-4 text-gray-800 font-bold text-3xl">
-                    Profil
-                  </h2>
-                </div>
                 <div className="flex p-2 items-center justify-center">
                   <img
                     className="w-[150px] h-[150px] object-cover rounded-full"
@@ -438,7 +440,7 @@ export default function profile() {
                   </button>
                 </div>
               </div>
-            </div>
+            </motion.div>
           </div>
         </section>
 
@@ -473,14 +475,17 @@ export default function profile() {
                 </Slider>
               </div>
             ) : (
-              <figure className="flex justify-center">
+              <motion.figure
+                animate={{ y: [100, 0] }}
+                className="flex justify-center"
+              >
                 <Image
                   src={heroEmptyProduct}
                   alt="heroEmptyProduct"
                   width={350}
                   height={350}
                 />
-              </figure>
+              </motion.figure>
             )}
             {/* Card */}
           </div>

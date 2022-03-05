@@ -156,10 +156,3 @@ export default function product() {
   );
 }
 
-// export async function getServerSideProps(context) {
-//   const responseUser = await baseURL.get(`/api/produc?_limit=8`)
-//     console.log(responseUser);
-//   return {
-//     props: {product}, // will be passed to the page component as props
-//   }
-// }

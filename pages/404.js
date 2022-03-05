@@ -1,13 +1,16 @@
 import Link from "next/link";
 import Head from "next/head";
-
+import { motion } from "framer-motion";
 export default function costum404() {
   return (
     <>
       <Head>
         <title>404</title>
       </Head>
-      <div className="flex font-poppins w-screen h-screen">
+      <motion.div
+        animate={{ y: [-100, 0] }}
+        className="flex font-poppins w-screen h-screen"
+      >
         <div className="flex flex-col items-center m-auto">
           <h1 className="font-bold text-center text-6xl">404</h1>
           <h3 className="font-semibold text-center text-lg">
@@ -24,7 +27,7 @@ export default function costum404() {
             </Link>
           </div>
         </div>
-      </div>
+      </motion.div>
     </>
   );
 }
