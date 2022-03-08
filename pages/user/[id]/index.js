@@ -69,9 +69,10 @@ export default function profile() {
   const updateUser = async () => {
     try {
       setIsloading(true);
+      const formData = new FormData();
       if (file) {
-        const formData = new FormData();
         formData.append("image", file);
+      }
         formData.append("nama_lengkap", detailUser.nama_lengkap);
         formData.append("no_hp", detailUser.no_hp);
         formData.append("alamat", detailUser.alamat);
@@ -91,27 +92,19 @@ export default function profile() {
             draggable: true,
             progress: undefined,
           });
+        }else {
+          toast.error(response.data.data, {
+            position: "top-right",
+            autoClose: 5000,
+            hideProgressBar: false,
+            closeOnClick: true,
+            pauseOnHover: true,
+            draggable: true,
+            progress: undefined,
+          });
+          setIsloading(false);
         }
         setIsloading(false);
-      } else {
-        toast.error(response.data.data, {
-          position: "top-right",
-          autoClose: 5000,
-          hideProgressBar: false,
-          closeOnClick: true,
-          pauseOnHover: true,
-          draggable: true,
-          progress: undefined,
-        });
-        setIsloading(false);
-      }
-      const response = await baseURL.put(
-        `/api/user/update/${router.query.id}`,
-        detailUser
-      );
-      if (response.data.status === 200) {
-        getUserDetails();
-      }
     } catch (error) {
       console.log(error);
     }
